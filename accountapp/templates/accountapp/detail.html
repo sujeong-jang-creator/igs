@@ -1,13 +1,14 @@
 {% extends 'base.html' %}
+{% load bootstrap4 %}
 
 {% block content %}
     <div>
-        <div>
+        <div class="grading-beef-igs_500px_div">
             <p>
-                {{ user.date_joined }}
+                {{ target_user.date_joined }}
             </p>
-            <h2>
-                {{ user.username }}
+            <h2 style="font-family: 'NanumSquareR">
+                {{ target_user.username }}
             </h2>
         </div>
     </div>
