@@ -4,22 +4,25 @@
 {% block content %}
     <div>
         <div class="grading-beef-igs_500px_div">
+            <h2>회원정보</h2>
+            <h3 style="font-family: 'NanumSquareB">
+                {{ target_user.username }} 님
+            </h3>
+            <p style="font-family: 'NanumSquareB">
+                {{ target_user.email }}
+            </p>
             <p>
                 {{ target_user.date_joined }}
             </p>
-            <h2 style="font-family: 'NanumSquareR">
-                {{ target_user.username }}
-            </h2>
-
             {% if target_user == user %}
             <a href="{% url 'accountapp:update' pk=user.pk %}">
                 <p>
-                    Chang Info
+                    비밀번호 변경
                 </p>
             </a>
             <a href="{% url 'accountapp:delete' pk=user.pk %}">
                 <p>
-                    Quit
+                    회원탈퇴
                 </p>
             </a>
             {% endif %}

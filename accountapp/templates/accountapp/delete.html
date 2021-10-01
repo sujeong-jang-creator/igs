@@ -4,7 +4,7 @@
 
 <div class="grading-beef-igs_500px_div">
     <div class="mb-4">
-        <h4>Quit</h4>
+        <h4>회원탈퇴</h4>
     </div>
     <form action="{% url 'accountapp:delete' pk=target_user.pk %}" method="post">
         {% csrf_token %}

@@ -5,10 +5,10 @@
 
     <div class="grading-beef-igs_500px_div">
         <div>
-            <h4>Login</h4>
+            <h4>로그인</h4>
         </div>
         <div>
-            <form action="" method="post">
+            <form action="{% url 'accountapp:login' %}" method="post">
                 {% csrf_token %}
                 {% bootstrap_form form %}
                 <input type="submit" class="btn btn-dark rounded-pill col-6 mt-3">
