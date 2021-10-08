@@ -1,5 +1,5 @@
 """
-ASGI config for grading-beef-igs project.
+ASGI config for grading-beef-accountapp project.
 
 It exposes the ASGI callable as a module-level variable named ``application``.
 

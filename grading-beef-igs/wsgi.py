@@ -1,5 +1,5 @@
 """
-WSGI config for grading-beef-igs project.
+WSGI config for grading-beef-accountapp project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 

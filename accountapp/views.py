@@ -1,5 +1,9 @@
 from django.contrib.auth.decorators import login_required
-# from django.contrib.auth.models import User
+from django.contrib.auth.models import User
+from django.contrib.auth.views import PasswordResetView, PasswordResetDoneView, PasswordResetConfirmView
+from django.contrib.auth.forms import PasswordResetForm
+
+from django.core.mail import EmailMessage
 
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
@@ -36,7 +40,7 @@ def hello_world(request):
 class AccountCreateView(CreateView):
     model = User
     form_class = UserCreationForm
-    success_url = reverse_lazy('accountapp:hello_world')
+    success_url = reverse_lazy('accountapp:login')
     template_name = 'accountapp/create.html'
 
 
@@ -54,8 +58,10 @@ class AccountUpdateView(UpdateView):
     model = User
     context_object_name = 'target_user'
     form_class = UserChangeForm
-    success_url = reverse_lazy('accountapp:detail')
     template_name = 'accountapp/update.html'
+
+    def get_success_url(self):
+        return reverse('accountapp:detail', kwargs={'pk': self.object.pk})
 
 
 @method_decorator(has_ownership, 'get')
@@ -65,3 +71,38 @@ class AccountDeleteView(DeleteView):
     context_object_name = 'target_user'
     success_url = reverse_lazy('accountapp:login')
     template_name = 'accountapp/delete.html'
+
+
+def send_email(request):
+    subject = "message"
+    to = ["aaa@bbb.com"]
+    from_email = "alphaca.igs@gmail.com"
+    message = "test"
+    EmailMessage(subject=subject, body=message, to=to, from_email=from_email).send()
+
+
+class AccountCreateView(CreateView):
+    model = User
+    form_class = UserCreationForm
+    success_url = reverse_lazy('accountapp:login')
+    template_name = 'accountapp/create.html'
+
+
+class UserPasswordResetView(PasswordResetView):
+    form_class = PasswordResetForm
+    # success_url = reverse_lazy('password_reset_done')
+    template_name = 'password_reset/password_reset.html'
+
+    def form_valid(self, form):
+        if User.objects.filter(email=self.request.POST.get("email")).exists():
+            return super().form_valid(form)
+        else:
+            return render(self.request, 'password_reset/password_reset_done_fail.html')
+
+
+class UserPasswordResetDoneView(PasswordResetDoneView):
+    template_name = 'password_reset/password_reset_done.html'
+
+
+class UserPasswordResetConfirmView(PasswordResetConfirmView):
+    template_name = 'password_reset/password_reset_confirm.html'

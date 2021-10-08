@@ -5,14 +5,17 @@
     <div>
         <div class="grading-beef-igs_500px_div">
             <h2>회원정보</h2>
-            <h3 style="font-family: 'NanumSquareB">
+            <hr>
+            <br>
+            <h3 style="font-family: 'NanumSquareB'">
                 {{ target_user.username }} 님
             </h3>
-            <p style="font-family: 'NanumSquareB">
-                {{ target_user.email }}
+            <br>
+            <p style="font-family: 'NanumSquareB'">
+                Email : {{ target_user.email }}
             </p>
-            <p>
-                {{ target_user.date_joined }}
+            <p style="font-family: 'NanumSquareB'">
+                가입일 : {{ target_user.date_joined|date:'Y년m월d일  h시i분' }}
             </p>
             {% if target_user == user %}
             <a href="{% url 'accountapp:update' pk=user.pk %}">
