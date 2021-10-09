@@ -1,0 +1,7 @@
+# SECRET_KEY
+pip install django-environ
+
+# postgre => version 14
+
+# install Pillow
+pip install Pillow
