@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+
+{% block content %}
+
+    <div class="igs_500px_div">
+        <div>
+            <h4>로그인</h4>
+        </div>
+        <div>
+            <form action="{% url 'account:login' %}" method="post">
+                {% csrf_token %}
+                {% bootstrap_form form %}
+                <button type="submit" onclick="history.back()" method="post" class="'btn btn-gray rounded-pill col-3 mt-3">취소</button>
+                <input type="submit" value="로그인" class="btn btn-dark rounded-pill col-3 mt-3">
+                <br><br>
+                <a href="{% url 'account:create' %}">회원가입</a>
+                <br>
+                <a href="{% url 'password_reset' %}">비밀번호 초기화</a>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}
