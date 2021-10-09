@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+
+{% block content %}
+    <div>
+        <div class="igs_500px_div">
+            <h2>회원정보</h2>
+            <hr>
+            <br>
+            <h3 style="font-family: 'NanumSquareB'">
+                {{ target_user.username }} 님
+            </h3>
+            <br>
+            <p style="font-family: 'NanumSquareB'">
+                Email : {{ target_user.email }}
+            </p>
+            <p style="font-family: 'NanumSquareB'">
+                가입일 : {{ target_user.date_joined|date:'Y년m월d일  h시i분' }}
+            </p>
+            {% if target_user == user %}
+            <a href="{% url 'account:update' pk=user.pk %}">
+                <p>
+                    비밀번호 변경
+                </p>
+            </a>
+            <a href="{% url 'account:delete' pk=user.pk %}">
+                <p>
+                    회원탈퇴
+                </p>
+            </a>
+            {% endif %}
+        </div>
+    </div>
+
+{% endblock %}

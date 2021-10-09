@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+
+{% block content %}
+
+<div class="igs_500px_div">
+    <div class="mb-4">
+        <h4>회원정보 수정</h4>
+    </div>
+    <form action="{% url 'account:update' pk=user.pk %}" method="post">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        <button type="cancel" onclick="history.back()" method="post" class="'btn btn-gray rounded-pill col-3 mt-3">취소</button>
+        <input method="post" type="submit" value="저장" class="'btn btn-dark rounded-pill col-3 mt-3">
+    </form>
+</div>
+
+{% endblock %}
