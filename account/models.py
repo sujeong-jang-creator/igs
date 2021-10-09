@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import (BaseUserManager, AbstractBaseUser)
+from django.utils import timezone
 
 
 class HelloWorld(models.Model):
@@ -42,6 +43,7 @@ class User(AbstractBaseUser):
         max_length=255,
         unique=True,
     )
+    date_joined = models.DateTimeField('date joined', default=timezone.now)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
 
