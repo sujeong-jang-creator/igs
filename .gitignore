@@ -82,4 +82,4 @@ __pycache__/
 
 
 # migrations
-account/migrations/
+**/migrations/
