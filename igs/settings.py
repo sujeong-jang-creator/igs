@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'upload',
     'bootstrap4',
     'django.forms',
+    'grading',
 ]
 
 MIDDLEWARE = [
