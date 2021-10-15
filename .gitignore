@@ -81,5 +81,6 @@ db.sqlite3
 __pycache__/
 
 
-# migrations
+# migrations, media
 **/migrations/
+media/
