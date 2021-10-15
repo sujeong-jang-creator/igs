@@ -68,4 +68,3 @@ class UserChangeForm(UserChangeForm):
         if commit:
             user.save()
         return user
-    
