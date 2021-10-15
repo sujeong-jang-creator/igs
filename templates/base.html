@@ -25,7 +25,7 @@
 
     <!-- menu js -->
     <script src="{% static 'js/menu.js' %}"></script>
-    
+
     <!-- import css/js -->
     {% block script %}{% endblock script %}
 
@@ -38,9 +38,9 @@
 
             <div class="main-header">
                 <span id='menu-btn' style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
-                <div class="main-logo">
+                <a class="main-logo" href="{% url 'home' %}">
                     <img src="{% static 'img/iguessso_font.png' %}" class="logo-img" alt="알겠소">
-                </div>
+                </a>
             </div>
 
             <div id="mySidenav" class="sidenav shadow-lg">
