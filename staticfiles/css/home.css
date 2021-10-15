@@ -1,17 +1,29 @@
-/* menu */
+.menu-list {
+    background-color: rgb(241, 209, 177);
+}
+
 .main-header {
     height: 10%;
     max-height: 70px;
-    /* text-align: right; */
-    background-color: rgb(241, 209, 177);
-    width: 100%;
-    justify-content: center;
-    display: flex;
 }
 
 #menu-btn {
     left: 20px;
     position: absolute;
+}
+
+.main-logo {
+    display: flex;
+    align-items: center;
+    height: 90%;
+}
+
+.menu-box {
+    padding: 0;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .sidenav {
@@ -20,6 +32,7 @@
     position: fixed;
     z-index: 1;
     top: 0;
+    /* right: 0; */
     background-color: rgb(255, 255, 255);
     overflow-x: hidden;
     transition: 0.5s;
@@ -49,12 +62,10 @@
     font-size: 36px;
     /* margin-left: 50px; */
 }
-
 .bi {
     width: 100%;
     height: 50%;
 }
-
 @media screen and (max-height: 450px) {
     .sidenav {
         padding-top: 15px;
@@ -65,17 +76,7 @@
     }
 }
 
-/* logo */
-.main-logo {
-    display: flex;
-    align-items: center;
-}
-
-.logo-img {
-    max-width: 100%;
-    height: 60%;
-}
-
-.main-header span {
-    align-self: center;
+.menu-icon {
+    color: black;
+    display: contents;
 }
