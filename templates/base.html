@@ -46,10 +46,19 @@
 
             <div id="mySidenav" class="sidenav shadow-lg">
                 <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                <div class="login-info">
+                    {% if user.is_authenticated %}
+                    {{user}}로그인
+                    {% endif %}
+
+                    {% if not user.is_authenticated %}
+                    로그인이 필요합니다.
+                    {% endif %}
+                </div>
                 <a href="#">사진 촬영</a>
                 <a href="#">사진 선택</a>
                 <a href="#">이력 조회</a>
-                <a href="#">로그인/회원가입</a>
+                <a href="{% url 'account:login' %}">로그인/회원가입</a>
             </div>
             {% block content %}
             {% endblock content %}
