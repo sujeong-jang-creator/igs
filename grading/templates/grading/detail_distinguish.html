@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block script %}
+<link rel="stylesheet" href="{% static 'grading/css/distinguish.css'%}">
+{% endblock script %}
+
+{% block content %}
+<div class="chart">차트 자리</div>
+
+<div class="detail_buttons">
+    <a href="{% url 'grading:total_distinguish' %}" type="button" class="btn btn-sm"
+        style="background-color: #969696">홈으로
+        가기</a>
+</div>
+{% endblock content %}
