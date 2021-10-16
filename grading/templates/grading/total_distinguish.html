@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block script %}
+<link rel="stylesheet" href="{% static 'grading/css/distinguish.css'%}">
+{% endblock script %}
+
+{% block content %}
+
+<div class="title">
+  전체 이력 조회
+  <hr style="border: solid 1px; width: 90%;">
+</div>
+
+<div class="buttons">
+  <a href="{% url 'grading:detail_distinguish' %}" type="button" class="btn btn-sm" style="background-color: #ffc282">전체
+    이력</a>
+  <button type="button" class="btn btn-sm" style="background-color: #969696">나의 이력</button>
+</div>
+
+<div>
+  <table class="table table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">No</th>
+        <th scope="col">날짜</th>
+        <th scope="col">등급</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for page_number in page.obj.paginator.page_range %}
+      {% if page_number == page_obj.number %}
+
+      {% for a in result %}
+      <tr>
+        <th scope="row">{{a.result_id}}</th>
+        <td>{{a.register_date}}</td>
+        <td>{{a.first_grade}}</td>
+      </tr>
+      {% endfor %}
+      {% endif %}
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% endblock content %}
