@@ -15,6 +15,7 @@ Including another URLconf
 """
 from re import template
 from django.conf import settings
+from django.conf.urls import url
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
@@ -28,6 +29,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('account.urls')),
     path('uploads/', include('upload.urls')),
+    path('grading/', include('grading.urls')),
 
     # path('password_change/done/', auth_views.PasswordChangeDoneView.as_view(
     #     template_name='password_reset/password_change_done.html'),
