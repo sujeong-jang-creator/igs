@@ -5,14 +5,14 @@ from django.core.paginator import Paginator
 def total_distinguish(request):
     result = Results.objects.all()
     # 페이지 처리 시작
-    paginator = Paginator(result, 5)
-    page = int(request.GET.get('page', 1))
-    page_obj = paginator.page(page)
+    # paginator = Paginator(result, 5)
+    # page = int(request.GET.get('page', 1))
+    # page_obj = paginator.page(page)
     # 페이지 처리 끝
     print(result)
 
-    # response = render(request, "iguessso_app/total_distinguish.html",{"result":result})
-    response = render(request, "grading/total_distinguish.html",{"page_obj":page_obj})
+    response = render(request, "grading/total_distinguish.html",{"result":result})
+    # response = render(request, "grading/total_distinguish.html",{"page_obj":page_obj, "result":result})
     return response
 
 def detail_distinguish(request):

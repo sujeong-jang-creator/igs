@@ -19,6 +19,7 @@
 </div>
 
 <div>
+  {{result}}
   <table class="table table-striped">
     <thead class="thead-dark">
       <tr>
@@ -28,18 +29,18 @@
       </tr>
     </thead>
     <tbody>
-      {% for page_number in page.obj.paginator.page_range %}
-      {% if page_number == page_obj.number %}
-
+      <!-- {{page_obj}} -->
+      <!-- {% for page_number in page.obj.paginator.page_range %} -->
+      <!-- {% if page_number == page_obj.number %} -->
       {% for a in result %}
       <tr>
-        <th scope="row">{{a.result_id}}</th>
+        <td>{{a.result_id}}</td>
         <td>{{a.register_date}}</td>
         <td>{{a.first_grade}}</td>
       </tr>
       {% endfor %}
-      {% endif %}
-      {% endfor %}
+      <!-- {% endif %} -->
+      <!-- {% endfor %} -->
     </tbody>
   </table>
 </div>
