@@ -1,0 +1,32 @@
+.igs_logo {
+    font-family: 'Lobster', cursive;
+}
+
+.igs_footer_button {
+    font-size: .9rem;
+}
+
+.igs_footer {
+    text-align:center;
+    margin-top: 2rem
+}
+
+.igs_header {
+    text-align:center;
+    margin: 2rem 0;
+}
+
+.igs_logo {
+    font-family: 'Lobster', cursive;
+}
+
+.igs_500px_div {
+    text-align: center;
+    max-width: 500px;
+    margin: 4rem auto;
+}
+
+.default-preview-img {
+    max-width: 100%;
+    height: auto;
+}

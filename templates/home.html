@@ -1,0 +1,108 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- bootstrap4 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"
+        integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF"
+        crossorigin="anonymous"></script>
+
+    <script src="{% static 'js/menu.js' %}"></script>
+    <link rel='stylesheet' href="{% static 'css/home.css' %}">
+
+    <title>알겠소</title>
+</head>
+
+
+<body class="cotianer">
+    <div class="row p-0 justify-content-md-center m-0">
+        <div class="col-md-5 col-12 p-0 vh-100 vw-100">
+            <div class="row h-100 w-100 m-0">
+                <div id="mySidenav" class="sidenav shadow-lg">
+                    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                    <a href="#">사진 촬영</a>
+                    <a href="#">사진 선택</a>
+                    <a href="#">이력 조회</a>
+                    <a href="#">로그인/회원가입</a>
+                </div>
+                <div class="col-12 h-75 p-0">
+                    <div class="main-header">
+                        <span id="menu-btn" style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+                    </div>
+
+
+                    <div class="main-logo">
+                        <img src="{% static 'img/[PNG]iguessso_logo.png' %}" class="img-fluid" alt="알겠소">
+                    </div>
+                </div>
+                <div class="col-12 h-25 menu-list">
+                    <div class="row h-100">
+                        <div class="menu-box col-6 border-right border-bottom border-dark text-center">
+                            <a href="" class="menu-icon p-0">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-camera-fill" viewBox="0 0 16 16">
+                                    <path d="M10.5 8.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z" />
+                                    <path
+                                        d="M2 4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1.172a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 9.172 2H6.828a2 2 0 0 0-1.414.586l-.828.828A2 2 0 0 1 3.172 4H2zm.5 2a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm9 2.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0z" />
+                                </svg>
+                                사진 촬영
+                            </a>
+                        </div>
+
+                        <div class="menu-box col-6 border-bottom border-dark text-center">
+                            <a href="" class="menu-icon p-0">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-card-image" viewBox="0 0 16 16">
+                                    <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
+                                    <path
+                                        d="M1.5 2A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13zm13 1a.5.5 0 0 1 .5.5v6l-3.775-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12v.54A.505.505 0 0 1 1 12.5v-9a.5.5 0 0 1 .5-.5h13z" />
+                                </svg>
+                                사진 선택
+                            </a>
+                        </div>
+
+                        <div class="menu-box col-6 border-right border-dark text-center">
+                            <a href="" class="menu-icon p-0">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-list-ul" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd"
+                                        d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm-3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
+                                </svg>
+                                이력 조회
+                            </a>
+                        </div>
+
+                        <div class="menu-box col-6 text-center">
+                            <a href="" class="menu-icon p-0">
+
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-person-fill" viewBox="0 0 16 16">
+                                    <path
+                                        d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+                                </svg>
+                                로그인/회원가입
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>
