@@ -156,8 +156,9 @@ STATICFILES_DIRS = [
 ]
 
 
-LOGIN_REDIRECT_URL = reverse_lazy('account:hello_world')
-LOGOUT_REDIRECT_URL = reverse_lazy('account:login')
+LOGIN_REDIRECT_URL = reverse_lazy('home')
+LOGOUT_REDIRECT_URL = reverse_lazy('home')
+
 
 MEDIA_URL = '/media/'
 

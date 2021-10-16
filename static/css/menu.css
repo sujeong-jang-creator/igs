@@ -79,3 +79,7 @@
 .main-header span {
     align-self: center;
 }
+
+.login-info {
+    height: 100px;
+}
