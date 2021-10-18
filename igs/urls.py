@@ -30,6 +30,7 @@ urlpatterns = [
     path('accounts/', include('account.urls')),
     path('uploads/', include('upload.urls')),
     path('grading/', include('grading.urls')),
+    path('result/', include('result.urls')),
 
     # path('password_change/done/', auth_views.PasswordChangeDoneView.as_view(
     #     template_name='password_reset/password_change_done.html'),
@@ -66,4 +67,5 @@ urlpatterns = [
     path('reset/done/', auth_views.PasswordResetCompleteView.as_view(
         template_name='password_reset/password_reset_complete.html'),
         name='password_reset_complete'),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_URL)
+]
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
