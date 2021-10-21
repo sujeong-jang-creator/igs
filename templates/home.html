@@ -34,7 +34,7 @@
         <div class="col-md-5 col-12 p-0 vh-100 vw-100">
             <div class="row h-100 w-100 m-0">
                 <div id="mySidenav" class="sidenav shadow-lg">
-                    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                    <a href="javascript:void(0)" class="closebtn">&times;</a>
                     <div class="login-info">
                         {% if user.is_authenticated %}
                         {{user.username}} 님 안녕하세요.
@@ -63,7 +63,7 @@
                 </div>
                 <div class="col-12 h-75 p-0">
                     <div class="main-header">
-                        <span id="menu-btn" style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+                        <span id="menu-btn" style="font-size:30px;cursor:pointer">&#9776;</span>
                     </div>
                     <div class="main-logo">
                         <img src="{% static 'img/[PNG]iguessso_logo.png' %}" class="img-fluid" alt="알겠소">
