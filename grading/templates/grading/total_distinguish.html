@@ -6,19 +6,23 @@
 {% endblock script %}
 
 {% block content %}
+<div id="detail-box">
+  <div class="title">
+    전체 이력 조회
+    <hr style="border: solid 1px; width: 90%;">
+  </div>
 
-<div class="title">
-  전체 이력 조회
-  <hr style="border: solid 1px; width: 90%;">
+  <div class="buttons">
+    <a href="{% url 'grading:total_distinguish' %}" type="button" class="btn btn-sm"
+      style="background-color: #ffc282">전체
+      이력</a>
+    <a href="{% url 'grading:detail_distinguish' %}" type="button" class="btn btn-sm"
+      style="background-color: #969696">나의
+      이력</a>
+  </div>
+
 </div>
-
-<div class="buttons">
-  <a href="{% url 'grading:total_distinguish' %}" type="button" class="btn btn-sm" style="background-color: #ffc282">전체
-    이력</a>
-  <a href="{% url 'grading:detail_distinguish' %}" type="button" class="btn btn-sm" style="background-color: #969696">나의 이력</a>
-</div>
-
-<div>
+<div id="table-box">
   <table class="table table-striped">
     <thead class="thead-dark">
       <tr>
@@ -76,9 +80,9 @@
     </li>
     {% endif %}
   </ul>
-
-  {% endif %}
 </div>
+
+{% endif %}
 
 
 {% endblock content %}

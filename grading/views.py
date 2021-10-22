@@ -1,7 +1,12 @@
 from django.shortcuts import render
+
 from .models import Results
+from account.models import User
+
 from django.core.paginator import Paginator
 from django.views.generic import ListView
+from django.contrib.auth import get_user
+
 
 class PostListView(ListView):
     template_name = "grading/total_distinguish.html"
@@ -35,13 +40,19 @@ class PostListView(ListView):
 
         return context
 
+
 class PostListView2(ListView):
     template_name = "grading/detail_distinguish.html"
-    model = Results
+    # model = Results
     paginate_by = 7
 
+    def get_queryset(self):
+        return Results.objects.filter(user_id=get_user(self.request).pk)
+
     def get_context_data(self, **kwargs):
+        
         context = super().get_context_data(**kwargs)
+
         paginator = context['paginator']
         page_group_count = 5
         current_page =  int(self.request.GET.get('page', 1))
@@ -67,8 +78,6 @@ class PostListView2(ListView):
 
         return context
 
-# def detail_distinguish(request):
-#     return render(request, 'grading/detail_distinguish.html')
 
 '''
 def grade_table(request):
