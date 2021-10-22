@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
-
+from django.contrib.auth import update_session_auth_hash
 from .models import User
 
 
@@ -34,7 +34,7 @@ class UserCreationForm(UserCreationForm):
         return user
 
 
-class UserChangeForm(UserChangeForm):
+class UserChangeForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 

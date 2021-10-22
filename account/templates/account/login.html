@@ -1,30 +1,24 @@
 {% extends 'base.html' %}
 {% load bootstrap4 %}
-
+{% load static %}
+{% block script %}
+<link rel='stylesheet' href="{% static 'account/css/bs_custom.css' %}">
+<link rel='stylesheet' href="{% static 'css/btns.css' %}">
+{% endblock script %}
 {% block content %}
 
-<div style="text-align: center">
+<div class="mst-div">
     <div>
         <h3>로그인</h3>
         <hr>
     </div>
     <div>
         <form action="{% url 'account:login' %}" method="post">
-            <style>
-                .btn {
-                    margin:15px;
-                }
-                .form-group {
-                    padding-top: 10px;
-                    padding-left: 20%;
-                    padding-right: 20%;
-                }
-            </style>
             {% csrf_token %}
             {% bootstrap_form form %}
-            <div style="">
-                <button type="submit" onclick="history.back()" method="post" class="btn btn-default">취소</button>
-                <input type="submit" value="로그인" class="btn btn-warning">
+            <div>
+                <button type="submit" onclick="history.back()" method="post" class="btn btn-neg">취소</button>
+                <input type="submit" value="로그인" class="btn btn-pos">
                 <br><br>
                 <a href="{% url 'account:create' %}">회원가입</a>  /  <a href="{% url 'password_reset' %}">비밀번호 초기화</a>
             </div>

@@ -1,14 +1,23 @@
 {% extends 'base.html' %}
-
+{% load static %}
+{% block script %}
+<link rel='stylesheet' href="{% static 'account/css/bs_custom.css' %}">
+<link rel='stylesheet' href="{% static 'css/btns.css' %}">
+{% endblock script %}
 {% block content %}
 
-<div class="igs_500px_div">
+<div class="mst-div">
     <div class="mb-4">
-        <h4>회원탈퇴</h4>
+        <h3>회원탈퇴</h3>
+        <hr>
+        탈퇴 후에는 되돌릴 수 없습니다.
+        <br>
+        정말로 탈퇴하시겠습니까?
     </div>
     <form action="{% url 'account:delete' pk=target_user.pk %}" method="post">
         {% csrf_token %}
-        <input type="submit" class="btn btn-danger rounded-pill col-6 mt-3">
+        <button type="submit" onclick="history.back()" method="post" class="btn btn-neg">취소</button>
+        <input type="submit" value="탈퇴하기" class="btn btn-danger col-3">
     </form>
 </div>
 

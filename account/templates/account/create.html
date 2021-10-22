@@ -3,10 +3,11 @@
 {% load static %}
 {% block script %}
 <link rel='stylesheet' href="{% static 'account/css/bs_custom.css' %}">
+<link rel='stylesheet' href="{% static 'css/btns.css' %}">
 {% endblock script %}
 {% block content %}
 
-<div style="text-align: center">
+<div class="mst-div">
     <div>
         <h3>회원가입</h3>
         <hr>
@@ -16,8 +17,8 @@
         {% csrf_token %}
         {% bootstrap_form form %}
 
-        <button type="submit" onclick="history.back()" method="post" class="btn btn-default">취소</button>
-        <input type="submit" value="회원가입" class="btn btn-warning">
+        <button type="submit" onclick="history.back()" method="post" class="btn btn-neg">취소</button>
+        <input type="submit" value="회원가입" class="btn btn-pos">
     </form>
 </div>
 
