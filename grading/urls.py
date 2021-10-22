@@ -5,6 +5,6 @@ from . import views
 app_name= "grading"
 
 urlpatterns = [
-    path('total_distinguish/', views.total_distinguish, name='total_distinguish'),
-    path('detail_distinguish/', views.detail_distinguish, name='detail_distinguish'),
+    path('total_distinguish/', views.PostListView.as_view(), name='total_distinguish'),
+    path('detail_distinguish/', views.PostListView2.as_view(), name='detail_distinguish'),
 ]
