@@ -30,35 +30,14 @@ urlpatterns = [
     path('accounts/', include('account.urls')),
     path('uploads/', include('upload.urls')),
     path('grading/', include('grading.urls')),
+    path('result/', include('result.urls')),
 
-    # path('password_change/done/', auth_views.PasswordChangeDoneView.as_view(
-    #     template_name='password_reset/password_change_done.html'),
-    #     name='password_change_done'),
-    # path('password_change/', auth_views.PasswordChangeView.as_view(
-    #     template_name='password_reset/password_change.html'),
-    #     name='password_change'),
-
-    # Django 디폴트 제공 뷰
-    # path('password_reset/', auth_views.PasswordResetView.as_view(
-    #     template_name='password_reset/password_reset.html'),
-    #     name='password_reset'),
-    # 사용자 뷰
     path('password_reset/', UserPasswordResetView.as_view(),
         name='password_reset'),
 
-    # Django 디폴트 제공 뷰
-    # path('password_reset/done/', auth_views.PasswordResetCompleteView.as_view(
-    #     template_name='password_reset/password_reset_done.html'),
-    #     name='password_reset_done'),
-    # 사용자 뷰
     path('password_reset/done/', UserPasswordResetDoneView.as_view(),
         name='password_reset_done'),
 
-    # Django 디폴트 제공 뷰
-    # path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(
-    #     template_name='password_reset/password_reset_confirm.html'),
-    #     name='password_reset_confirm'),
-    # 사용자 뷰
     path('reset/<uidb64>/<token>/', UserPasswordResetConfirmView.as_view(
         template_name='password_reset/password_reset_confirm.html'),
         name='password_reset_confirm'),
@@ -66,4 +45,5 @@ urlpatterns = [
     path('reset/done/', auth_views.PasswordResetCompleteView.as_view(
         template_name='password_reset/password_reset_complete.html'),
         name='password_reset_complete'),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_URL)
+]
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -79,7 +79,13 @@ venv/
 db.sqlite3
 .idea/
 __pycache__/
+staticfiles/
 
+# uwsgi
+igs.ini
+igs.uwsgi.log
+igs.uwsgi.pid
 
-# migrations
+# migrations, media
 **/migrations/
+media/
