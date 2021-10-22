@@ -1,37 +1,23 @@
 {% extends 'base.html' %}
 {% load bootstrap4 %}
-
+{% load static %}
+{% block script %}
+<link rel='stylesheet' href="{% static 'account/css/bs_custom.css' %}">
+{% endblock script %}
 {% block content %}
-<div>
-    <a href="{% url 'upload:pick_photo' %}?next={{ request.path }}">
-        <span>사진 촬영</span>
-    </a>
-    {% if not user.is_authenticated %}
-    <a href="{% url 'account:login' %}?next={{ request.path }}">
-        <span>Login</span>
-    </a>
-    <a href="{% url 'account:create' %}?next={{ request.path }}">
-        <span>SignUp</span>
-    </a>
-    {% else %}
-    <a href="{% url 'account:detail' pk=user.pk %}">
-        <span>MyPage</span>
-    </a>
-    <a href="{% url 'account:logout' %}?next={{ request.path }}">
-        <span>Logout</span>
-    </a>
-    {% endif %}
-</div>
 
-<div class="igs_500px_div">
-    <div class="mb-4">
-        <h4>회원가입</h4>
+<div style="text-align: center">
+    <div>
+        <h3>회원가입</h3>
+        <hr>
     </div>
     <form action="{% url 'account:create' %}" method="post">
+
         {% csrf_token %}
         {% bootstrap_form form %}
-        <button type="submit" onclick="history.back()" method="post" class="'btn btn-gray rounded-pill col-3 mt-3">취소</button>
-        <input type="submit" value="회원가입" class="btn btn-dark rounded-pill col-3 mt-3">
+
+        <button type="submit" onclick="history.back()" method="post" class="btn btn-default">취소</button>
+        <input type="submit" value="회원가입" class="btn btn-warning">
     </form>
 </div>
 
