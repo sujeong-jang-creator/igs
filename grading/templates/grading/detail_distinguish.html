@@ -6,11 +6,79 @@
 {% endblock script %}
 
 {% block content %}
-<div class="chart">차트 자리</div>
 
-<div class="detail_buttons">
-    <a href="{% url 'grading:total_distinguish' %}" type="button" class="btn btn-sm"
-        style="background-color: #969696">홈으로
-        가기</a>
+<div class="title">
+    나의 이력 조회
+    <hr style="border: solid 1px; width: 90%;">
 </div>
+
+<div class="buttons">
+    <a href="{% url 'grading:total_distinguish'%}" type="button" class="btn btn-sm" style="background-color: #969696">전체
+        이력</a>
+
+    <a href="{% url 'grading:detail_distinguish'%}" class="btn btn-sm" style="background-color: #ffc282">나의 이력</a>
+</div>
+
+<div>
+    <table class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">No</th>
+                <th scope="col">날짜</th>
+                <th scope="col">등급</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for b in object_list %}
+            <tr>
+                <td>{{b.result_id}}</td>
+                <td>{{b.register_date}}</td>
+                <td>{{b.first_grade}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    {% if is_paginated %}
+    <ul class='pagination justify-content-center'>
+        <!-- 이전페이지그룹으로 이동하는 링크 -->
+        {% if has_previous %}
+        <li class='page-item'>
+            <a href="{% url 'grading:total_distinguish' %}?page={{previous_page_no}}" class='page-link'>이전</a>
+        </li>
+        {% else %}
+        <li class='page-item'>
+            <span class='page-link'>이전</span>
+        </li>
+        {% endif %}
+
+        <!-- 페이지번호 링크.  page_obj.number:현재페이지의 번호-->
+        {% for page in page_range %}
+        {% if page == page_obj.number %}
+        <li class='page-item active'>
+            <span class='page-link'>{{page}}</span>
+        </li>
+        {% else %}
+        <li class='page-item'>
+            <a href="{% url 'grading:total_distinguish' %}?page={{page}}" class='page-link'>{{page}}</a>
+        </li>
+        {% endif %}
+        {% endfor %}
+
+
+        <!-- 다음페이지그룹으로 이동하는 링크 -->
+        {% if has_next %}
+        <li class='page-item'>
+            <a href="{% url 'grading:total_distinguish' %}?page={{next_page_no}}" class='page-link'>다음</a>
+        </li>
+        {% else %}
+        <li class='page-item'>
+            <span class='page-link'>다음</span>
+        </li>
+        {% endif %}
+    </ul>
+
+    {% endif %}
+</div>
+
 {% endblock content %}
