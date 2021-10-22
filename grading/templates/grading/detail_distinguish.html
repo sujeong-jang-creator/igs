@@ -8,19 +8,20 @@
 
 {% block content %}
 
-<div class="title">
-    나의 이력 조회
-    <hr style="border: solid 1px; width: 90%;">
+<div id="detail-box">
+    <div class="title">
+        <p class="font-weight-bold" style="display: inline-block; margin: 0;">{{user.username}}</p> 님의 이력 조회
+        <hr style="border: solid 1px; width: 90%;">
+    </div>
+    <div class="buttons">
+        <a href="{% url 'grading:total_distinguish'%}" type="button" class="btn btn-sm btn-neg">전체
+            이력</a>
+    
+        <a href="{% url 'grading:detail_distinguish'%}" class="btn btn-sm btn-pos">나의 이력</a>
+    </div>
 </div>
 
-<div class="buttons">
-    <a href="{% url 'grading:total_distinguish'%}" type="button" class="btn btn-sm btn-neg">전체
-        이력</a>
-
-    <a href="{% url 'grading:detail_distinguish'%}" class="btn btn-sm btn-pos">나의 이력</a>
-</div>
-
-<div>
+<div id="table-box">
     <table class="table table-striped">
         <thead class="thead-dark">
             <tr>
