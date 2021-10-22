@@ -44,7 +44,7 @@
                         로그인이 필요합니다.
                         {% endif %}
                     </div>
-                    <a href="#">사진 촬영</a>
+                    <a href="{% url 'filming:index' %}">사진 촬영</a>
                     <a href="{% url 'upload:pick_photo' %}">사진 선택</a>
                     <a href="{% url 'grading:total_distinguish' %}">이력 조회</a>
 
@@ -72,7 +72,7 @@
                 <div class="col-12 h-25 menu-list">
                     <div class="row h-100">
                         <div class="menu-box col-6 border-right border-bottom border-dark text-center">
-                            <a href="#" class="menu-icon p-0">
+                            <a href="{% url 'filming:index' %}" class="menu-icon p-0">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                     class="bi bi-camera-fill" viewBox="0 0 16 16">
                                     <path d="M10.5 8.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z" />

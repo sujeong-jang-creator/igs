@@ -55,7 +55,7 @@
                     로그인이 필요합니다.
                     {% endif %}
                 </div>
-                <a href="#">사진 촬영</a>
+                <a href="{% url 'filming:index' %}">사진 촬영</a>
                 <a href="{% url 'upload:pick_photo' %}">사진 선택</a>
                 <a href="{% url 'grading:total_distinguish' %}">이력 조회</a>
 
