@@ -40,14 +40,18 @@
 }
 
 .sidenav a {
-    padding: 10px 0px;
+    padding: 15px 0px;
     text-decoration: none;
     font-size: 20px;
     color: #818181;
     display: block;
     transition: 0.3s;
     text-align: center;
-    /* border-bottom: 1px black solid; */
+}
+
+.sidenav a:not(.closebtn) {
+    margin: 0 5%;
+    border-bottom: 1px gray dashed;
 }
 
 .sidenav a:hover:not(.closebtn) {
@@ -62,6 +66,7 @@
     font-size: 36px;
     /* margin-left: 50px; */
 }
+
 .bi {
     width: 100%;
     height: 50%;
@@ -83,4 +88,22 @@
 
 .login-info {
     height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 5%;
+    border-bottom: 1px solid gray;
+}
+
+.logout-content {
+    display: flex;
+    justify-content: right;
+    margin: 5%;
+}
+
+.logout-content button a {
+    text-decoration: none;
+    color: white;
+    font-size: small;
+    display: contents;
 }
