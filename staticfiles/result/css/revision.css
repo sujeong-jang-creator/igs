@@ -1,0 +1,28 @@
+.button {
+    font-size: 15px;
+    margin-top: 20px;
+    color: white;
+    background-color: rgb(241, 209, 177);
+    border-color: rgb(241, 209, 177);
+    margin-left: 2%;
+    margin-right: 2%;
+    border: 0;
+    outline: 0;
+}
+    
+
+.table{
+    margin-top: 10px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+span {
+    font-size: 15px;
+}
+
+.table td, .table th {
+    padding: 0;
+    vertical-align: middle;
+    border-top: 1px solid #dee2e6;
+}

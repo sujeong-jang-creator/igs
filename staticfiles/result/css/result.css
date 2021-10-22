@@ -1,0 +1,19 @@
+.button {
+    font-size: 15px;
+    margin-top: 20px;
+    color: white;
+    background-color: rgb(241, 209, 177);
+    border-color: rgb(241, 209, 177);
+    margin-left: 2%;
+    margin-right: 2%;
+    border: 0;
+    outline: 0;
+}
+  
+#myChart {
+    text-align: center;
+}
+  
+.text {
+    text-align: center;
+}

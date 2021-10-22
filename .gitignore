@@ -79,7 +79,6 @@ venv/
 db.sqlite3
 .idea/
 __pycache__/
-staticfiles/
 
 # uwsgi
 igs.ini
