@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load pybo_filter %}
 
 {% block script %}
 <link rel="stylesheet" href="{% static 'grading/css/distinguish.css'%}">
@@ -31,6 +32,7 @@
   </div>
 </div>
 
+{{number}}
 <div id="table-box">
   <table class="table table-striped">
     <thead class="thead-dark">
@@ -43,7 +45,7 @@
     <tbody>
       {% for a in object_list %}
       <tr>
-        <td>{{a.result_id}}</td>
+        <td>{{page_obj.number|sub:1|multi:7|add:forloop.counter}}</td>
         <td>{{a.register_date}}</td>
         <td>{{a.first_grade}}</td>
       </tr>
