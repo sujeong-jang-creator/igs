@@ -10,7 +10,7 @@ def total_distinguish(request):
     # page_obj = paginator.page(page)
     # 페이지 처리 끝
     print(result)
-
+    
     response = render(request, "grading/total_distinguish.html",{"result":result})
     # response = render(request, "grading/total_distinguish.html",{"page_obj":page_obj, "result":result})
     return response
