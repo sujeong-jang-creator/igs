@@ -1,6 +1,6 @@
 /* menu */
 .main-header {
-    height: 10%;
+    height: 9%;
     max-height: 70px;
     /* text-align: right; */
     background-color: rgb(241, 209, 177);
@@ -18,7 +18,7 @@
     height: 100%;
     width: 0;
     position: fixed;
-    z-index: 1;
+    z-index: 4;
     top: 0;
     background-color: rgb(255, 255, 255);
     overflow-x: hidden;
@@ -104,4 +104,8 @@
     color: white;
     font-size: small;
     display: contents;
+}
+
+.content-body {
+    height: 91%;
 }
