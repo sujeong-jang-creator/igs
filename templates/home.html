@@ -22,8 +22,10 @@
         integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF"
         crossorigin="anonymous"></script>
 
+    <!-- import js, css -->
     <script src="{% static 'js/menu.js' %}"></script>
     <link rel='stylesheet' href="{% static 'css/home.css' %}">
+    <link rel='stylesheet' href="{% static 'css/btns.css' %}">
 
     <title>알겠소</title>
 </head>
@@ -55,7 +57,7 @@
                     {% if user.is_authenticated %}
                     <a href="{% url 'account:detail' user.id %}">마이 페이지</a>
                     <div class="logout-content">
-                        <button class="btn btn-primary logout-btn">
+                        <button class="btn btn-neg logout-btn">
                             <a href="{% url 'account:logout' %}?next={{ request.path }}">로그아웃</a>
                         </button>
                     </div>
@@ -72,18 +74,17 @@
                 <div class="col-12 h-25 menu-list">
                     <div class="row h-100">
                         <div class="menu-box col-6 border-right border-bottom border-dark text-center">
-                            <a href="{% url 'filming:index' %}" class="menu-icon p-0">
+                            <a href="{% url 'upload:pick_photo' %}" class="menu-icon p-0">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                    class="bi bi-camera-fill" viewBox="0 0 16 16">
-                                    <path d="M10.5 8.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z" />
-                                    <path
-                                        d="M2 4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1.172a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 9.172 2H6.828a2 2 0 0 0-1.414.586l-.828.828A2 2 0 0 1 3.172 4H2zm.5 2a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm9 2.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0z" />
+                                    class="bi bi-question-lg" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd"
+                                        d="M4.475 5.458c-.284 0-.514-.237-.47-.517C4.28 3.24 5.576 2 7.825 2c2.25 0 3.767 1.36 3.767 3.215 0 1.344-.665 2.288-1.79 2.973-1.1.659-1.414 1.118-1.414 2.01v.03a.5.5 0 0 1-.5.5h-.77a.5.5 0 0 1-.5-.495l-.003-.2c-.043-1.221.477-2.001 1.645-2.712 1.03-.632 1.397-1.135 1.397-2.028 0-.979-.758-1.698-1.926-1.698-1.009 0-1.71.529-1.938 1.402-.066.254-.278.461-.54.461h-.777ZM7.496 14c.622 0 1.095-.474 1.095-1.09 0-.618-.473-1.092-1.095-1.092-.606 0-1.087.474-1.087 1.091S6.89 14 7.496 14Z" />
                                 </svg>
-                                사진 촬영
+                                등급 판정
                             </a>
                         </div>
 
-                        <div class="menu-box col-6 border-bottom border-dark text-center">
+                        <!-- <div class="menu-box col-6 border-bottom border-dark text-center">
                             <a href="{% url 'upload:pick_photo' %}" class="menu-icon p-0">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                     class="bi bi-card-image" viewBox="0 0 16 16">
@@ -93,9 +94,9 @@
                                 </svg>
                                 사진 선택
                             </a>
-                        </div>
+                        </div> -->
 
-                        <div class="menu-box col-6 border-right border-dark text-center">
+                        <div class="menu-box col-6 border-bottom border-dark text-center">
                             <a href="{% url 'grading:total_distinguish' %}" class="menu-icon p-0">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                     class="bi bi-list-ul" viewBox="0 0 16 16">
@@ -106,30 +107,59 @@
                             </a>
                         </div>
 
-                        <div class="menu-box col-6 text-center">
-                            {% if user.is_authenticated %}
-                            <a href="{% url 'account:logout' %}?next={{ request.path }}" class="menu-icon p-0">
+                        <div class="menu-box col-6 border-right border-dark text-center">
+                            <a href="{% url 'grading:total_distinguish' %}" class="menu-icon p-0">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-person-plus-fill" viewBox="0 0 16 16">
+                                    <path
+                                        d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+                                    <path fill-rule="evenodd"
+                                        d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z" />
+                                </svg>
+                                회원가입
+                            </a>
+                        </div>
 
+                        <div class="menu-box col-6 text-center">
+                            <a href="{% url 'grading:total_distinguish' %}" class="menu-icon p-0">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-door-open-fill" viewBox="0 0 16 16">
+                                    <path
+                                        d="M1.5 15a.5.5 0 0 0 0 1h13a.5.5 0 0 0 0-1H13V2.5A1.5 1.5 0 0 0 11.5 1H11V.5a.5.5 0 0 0-.57-.495l-7 1A.5.5 0 0 0 3 1.5V15H1.5zM11 2h.5a.5.5 0 0 1 .5.5V15h-1V2zm-2.5 8c-.276 0-.5-.448-.5-1s.224-1 .5-1 .5.448.5 1-.224 1-.5 1z" />
+                                </svg>
+                                로그인
+                            </a>
+                        </div>
+
+
+
+
+
+
+
+                        <!-- <div class="menu-box col-6 text-center">
+                            {% if user.is_authenticated %}
+                            <a href="{% url 'account:detail' user.id %}" class="menu-icon p-0">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                     class="bi bi-person-fill" viewBox="0 0 16 16">
                                     <path
                                         d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
                                 </svg>
                                 마이 페이지
-                                {% endif %}
+                            </a>
+                            {% endif %}
 
-                                {% if not user.is_authenticated %}
-                                <a href="{% url 'account:login' %}" class="menu-icon p-0">
-
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                        class="bi bi-person-fill" viewBox="0 0 16 16">
-                                        <path
-                                            d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
-                                    </svg>
-                                    로그인 / 회원가입
-                                    {% endif %}
-                                </a>
-                        </div>
+                            {% if not user.is_authenticated %}
+                            <a href="{% url 'account:login' %}" class="menu-icon p-0">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-person-fill" viewBox="0 0 16 16">
+                                    <path
+                                        d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+                                </svg>
+                                로그인 / 회원가입
+                            </a>
+                            {% endif %}
+                        </div> -->
                     </div>
                 </div>
             </div>
