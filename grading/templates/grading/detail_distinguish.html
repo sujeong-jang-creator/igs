@@ -12,7 +12,6 @@
 <div id="detail-box">
     <div class="title">
         <p class="font-weight-bold" style="display: inline-block; margin: 0;">{{user.username}}</p> 님의 이력 조회
-        <hr style="border: solid 1px; width: 90%;">
     </div>
     <div class="buttons">
         <a href="{% url 'grading:total_distinguish'%}" type="button" class="btn btn-sm btn-neg">전체
@@ -50,7 +49,7 @@
             <a href="{% url 'grading:total_distinguish' %}?page={{previous_page_no}}" class='page-link'>이전</a>
         </li>
         {% else %}
-        <li class='page-item'>
+        <li class='page-item' style="color: #969696">
             <span class='page-link'>이전</span>
         </li>
         {% endif %}
@@ -59,7 +58,7 @@
         {% for page in page_range %}
         {% if page == page_obj.number %}
         <li class='page-item active'>
-            <span class='page-link'>{{page}}</span>
+            <span class='page-link' style="background-color: #969696; color: #FFFFFF; border: #969696;">{{page}}</span>
         </li>
         {% else %}
         <li class='page-item'>
@@ -76,7 +75,7 @@
         </li>
         {% else %}
         <li class='page-item'>
-            <span class='page-link'>다음</span>
+            <span class='page-link' style="color: #969696">다음</span>
         </li>
         {% endif %}
     </ul>
