@@ -44,7 +44,7 @@
     </thead>
     <tbody>
       {% for a in object_list %}
-      <tr>
+      <tr onClick="location.href='#'" style="cursor:pointer;">
         <td>{{page_obj.number|sub:1|multi:7|add:forloop.counter}}</td>
         <td>{{a.register_date}}</td>
         <td>{{a.first_grade}}</td>
