@@ -24,3 +24,4 @@ def revision(request, pk):
             update.modified_grade=choice_grade
             update.save()
             return redirect('/')
+            
