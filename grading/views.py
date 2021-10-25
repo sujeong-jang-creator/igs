@@ -1,9 +1,8 @@
 from typing import Counter
 from django.shortcuts import render
 
-from .models import Results
 from account.models import User
-
+from upload.models import Results
 from django.core.paginator import Paginator
 from django.views.generic import ListView
 from django.contrib.auth import get_user

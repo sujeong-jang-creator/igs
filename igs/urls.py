@@ -28,7 +28,7 @@ urlpatterns = [
     path('', TemplateView.as_view(template_name='home.html'), name='home'),
     path('admin/', admin.site.urls),
     path('accounts/', include('account.urls')),
-    path('uploads/', include('upload.urls')),
+    path('upload/', include('upload.urls')),
     path('grading/', include('grading.urls')),
     path('result/', include('result.urls')),
     path('filming/', include('filming.urls')),
