@@ -1,5 +1,5 @@
 from django.shortcuts import redirect, render
-from grading.models import Results
+from upload.models import Results
 from django.db.models import Q
 from django.core.serializers.json import DjangoJSONEncoder
 
