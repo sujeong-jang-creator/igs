@@ -2,29 +2,50 @@
 {% load static %}
 
 {% block script %}
-<link rel="stylesheet" href="{% static 'upload/css/asdf.css'%}">
+<link rel="stylesheet" href="{% static 'upload/css/img_preview.css'%}">
+<link rel="stylesheet" href="{% static 'css/btns.css'%}">
+<script src="{% static 'upload/js/img_preview.js' %}"></script>
 
 {% endblock script %}
 
 
 {% block content %}
 
-<div class="igs_500px_div">
+<div class="title">
+    등급 판정
+</div>
+<div class="center">
+    <form method='post' action='{% url "upload:predict" %}' enctype="multipart/form-data" style="width: 80%;">
+        <div class="form-input">
+            {% csrf_token %}
+            <label for="file-ip-1">upload image</label>
+            <input type="file" id="file-ip-1" accept="image/*" onchange="showPreview(event);" name='upimg'>
+            <div class="preview">
+                <img id="file-ip-1-preview">
+            </div>
+        </div>
+        <div class="predict-box">
+            <button type='submit' class="predict-btn btn-neg">판별하기</button>
+        </div>
+    </form>
+</div>
+
+<!-- <div class="igs_500px_div">
     <div class="mb-4">
         <h4>사진선택</h4>
-    </div>
-    <!-- <form action="{% url 'upload:pick_photo' %}" method="post" enctype="multipart/form-data">
+    </div> -->
+<!-- <form action="{% url 'upload:pick_photo' %}" method="post" enctype="multipart/form-data">
         {{ form.as_p }}
         {% csrf_token %}
         {{ form.media }}
         <input type="submit" value="판별하기" class="btn btn-dark rounded-pill col-6 mt-3">
     </form> -->
-    <form method='post' action='{% url "upload:predict" %}' enctype="multipart/form-data">
+<!-- <form method='post' action='{% url "upload:predict" %}' enctype="multipart/form-data">
         {% csrf_token %}
         <input type='file' name='upimg'>
         <button type='submit'>판별하기</button>
     </form>
     </div> 
-</div>
+</div> -->
 
 {% endblock content %}
