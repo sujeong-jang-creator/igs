@@ -88,3 +88,6 @@ igs.uwsgi.pid
 # migrations, media
 **/migrations/
 media/
+
+# large file
+model/YOLOv4/
