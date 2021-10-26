@@ -54,7 +54,6 @@ INSTALLED_APPS = [
     'django.forms',
     'grading',
     'result',
-    'filming',
 ]
 
 MIDDLEWARE = [

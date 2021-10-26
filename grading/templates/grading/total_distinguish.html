@@ -11,7 +11,6 @@
 <div id="detail-box">
   <div class="title">
     전체 이력 조회
-    <hr style="border: solid 1px; width: 90%;">
   </div>
 
   <div class="buttons">
@@ -44,7 +43,7 @@
     </thead>
     <tbody>
       {% for a in object_list %}
-      <tr>
+      <tr onClick="location.href='#'" style="cursor:pointer;">
         <td>{{page_obj.number|sub:1|multi:7|add:forloop.counter}}</td>
         <td>{{a.register_date}}</td>
         <td>{{a.first_grade}}</td>
@@ -62,7 +61,7 @@
     </li>
     {% else %}
     <li class='page-item'>
-      <span class='page-link'>이전</span>
+      <span class='page-link' style="color: #969696">이전</span>
     </li>
     {% endif %}
 
@@ -70,11 +69,11 @@
     {% for page in page_range %}
     {% if page == page_obj.number %}
     <li class='page-item active'>
-      <span class='page-link'>{{page}}</span>
+      <span class='page-link' style="background-color: #969696; color: #FFFFFF; border: #969696;">{{page}}</span>
     </li>
     {% else %}
     <li class='page-item'>
-      <a href="{% url 'grading:total_distinguish' %}?page={{page}}" class='page-link'>{{page}}</a>
+      <a href="{% url 'grading:total_distinguish' %}?page={{page}}" class='page-link' style="color: #969696">{{page}}</a>
     </li>
     {% endif %}
     {% endfor %}
@@ -87,7 +86,7 @@
     </li>
     {% else %}
     <li class='page-item'>
-      <span class='page-link'>다음</span>
+      <span class='page-link' style="color: #969696">다음</span>
     </li>
     {% endif %}
   </ul>

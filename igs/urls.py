@@ -31,7 +31,6 @@ urlpatterns = [
     path('upload/', include('upload.urls')),
     path('grading/', include('grading.urls')),
     path('result/', include('result.urls')),
-    path('filming/', include('filming.urls')),
 
     path('password_reset/', UserPasswordResetView.as_view(),
         name='password_reset'),
