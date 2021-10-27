@@ -1,8 +1,8 @@
+from typing import Counter
 from django.shortcuts import render
 
-from .models import Results
 from account.models import User
-
+from upload.models import Results
 from django.core.paginator import Paginator
 from django.views.generic import ListView
 from django.contrib.auth import get_user
@@ -43,11 +43,10 @@ class PostListView(ListView):
 
 class PostListView2(ListView):
     template_name = "grading/detail_distinguish.html"
-    # model = Results
     paginate_by = 7
 
     def get_queryset(self):
-        return Results.objects.filter(user_id=get_user(self.request).pk)
+        return Results.objects.filter(user_id=get_user(self.request).pk).order_by('-register_date')
 
     def get_context_data(self, **kwargs):
         
@@ -77,19 +76,3 @@ class PostListView2(ListView):
             context['next_page_no'] = end_page.next_page_number()
 
         return context
-
-
-'''
-def grade_table(request):
-    result = Results.objects.all()
-    # 페이지 처리 시작
-    paginator = Paginator(result, 5)
-    page = int(request.Get.get('page', 1))
-    page_obj = paginator.page(page)
-    # 페이지 처리 끝
-    print(result)
-
-    # response = render(request, "iguessso_app/total_distinguish.html",{"result":result})
-    response = render(request, "grading/total_distinguish.html",{"page_obj":page_obj})
-    return response
-'''

@@ -1,10 +1,4 @@
 from django.contrib import admin
-from .forms import PickPhotoForm
-from .models import PickPhoto
+from .models import Results
 
-
-class ImageAdmin(admin.ModelAdmin):
-    form = PickPhotoForm
-
-
-admin.site.register(PickPhoto, ImageAdmin)
+admin.site.register(Results)

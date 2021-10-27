@@ -39,7 +39,7 @@
     {% csrf_token %}
    
     <button type="submit" class = "button" id = "insert_btn" >홈으로가기</button>
-    <button type="button" class = "button"  onclick= location.href="{%url 'result:revision' result.result_id %}">등급수정</button>
+    <button type="button" class = "button"  onclick= location.href="{%url 'result:revision' result.pk %}">등급수정</button>
   
 </div>
 </form>
