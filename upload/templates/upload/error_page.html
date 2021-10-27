@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="title">
+    에러 페이지
+</div>
+<div>
+    사진의 화질이 좋지 않아서 에러가 생겼습니다.
+    새로운 사진을 넣거나 새로 사진을 찍어 올려주세용
+</div>
+<div>
+    <button type='button' onclick=location.href="{%url 'home' %}">홈으로 가기</button>
+</div>
+
+{% endblock content %}

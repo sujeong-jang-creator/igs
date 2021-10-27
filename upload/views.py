@@ -1,12 +1,5 @@
 from django.shortcuts import redirect, render
 
-# Create your views here.
-from django.urls import reverse_lazy
-from django.views.generic import CreateView
-
-# from upload.forms import PickPhotoForm
-# from upload.models import PickPhoto
-
 import os
 import json
 import numpy as np
@@ -19,22 +12,6 @@ from .apps import UploadConfig
 import tensorflow as tf
 from upload.models import Results
 from account.models import User
-import uuid
-
-# class PickPhotoView(CreateView):
-#     model = PickPhoto
-#     context_object_name = 'pick_photo'
-#     form_class = PickPhotoForm
-#     success_url = reverse_lazy('account:hello_world')
-#     template_name = 'upload/pick_photo.html'
-
-    # def form_valid(self, form):
-    #     temp_pick_photo = form.save(commit=False)
-    #     temp_pick_photo.user = self.request.user
-    #     temp_pick_photo.save()
-    #
-    #     return super().form_valid(form)
-
 
 def predict(request):
     form = forms.UploadForm(request.POST, request.FILES)
@@ -42,8 +19,8 @@ def predict(request):
     if form.is_valid(): 
         clean_data = form.cleaned_data 
         img_field  = clean_data['upimg']
-        print(img_field, type(img_field))
-        print(img_field.image.width, img_field.image.height, img_field.image.format, img_field.name) 
+        # print(img_field, type(img_field))
+        # print(img_field.image.width, img_field.image.height, img_field.image.format, img_field.name) 
         
         image = Image.open(img_field) 
         image_resize = image.resize((512,512)) 
@@ -54,6 +31,9 @@ def predict(request):
         model = UploadConfig.model
         pred = model.predict(input_tensor) 
         
+        if len(pred[0]) == 0: # 사진의 화질이 좋지 않아서 검출이 되지 않는 경우
+            return redirect('/upload/error_page')
+
         print("pred : " , pred)
         print("--------------------")
         # 후처리
@@ -81,42 +61,42 @@ def predict(request):
         max_y = boxes[0][0][2]
         max_x = boxes[0][0][3]
 
+        
+
         for i in range(len(pred[0])):
             print(pred[0][i][0], pred[0][i][1], pred[0][i][2], pred[0][i][3])
             if pred[0][i][0] == min_y and pred[0][i][1] == min_x and pred[0][i][2] == max_y and pred[0][i][3]==max_x:
                 class_prob = [pred[0][i][4], pred[0][i][5], pred[0][i][6], pred[0][i][7], pred[0][i][8]]
-                # print(class_prob)
                 break      
         
         sorted_index = np.argsort(class_prob)
-        # print(sorted_index)
-        # print(class_prob)
         class_str = ["1++", "1+", "1", "2", "3"]
-        # save_path = os.path.join(settings.MEDIA_ROOT, img_field.name)
-        print("settings.MEDIA_ROOT : ", settings.MEDIA_ROOT)
-        print("MEDIA_URL : ", settings.MEDIA_URL)
+        # print("settings.MEDIA_ROOT : ", settings.MEDIA_ROOT)
+        # print("MEDIA_URL : ", settings.MEDIA_URL)
         
         user = User(pk=request.user.pk)
-        print(user)
+        # print(user)
     
+        # Result에 모델 저장
         result = Results(img_file_path = '/media/',  first_grade=class_str[sorted_index[4]], 
         first_grade_percentage = int(np.round(100*class_prob[sorted_index[4]])), second_grade = class_str[sorted_index[3]], 
         second_grade_percentage = int(np.round(100*class_prob[sorted_index[3]])), third_grade = class_str[sorted_index[2]], 
         third_grade_percentage = int(np.round(100*class_prob[sorted_index[2]])), user_id= user)
         result.save()
 
+        # Result 이미지 경로 수정 
         save_path = os.path.join('/media/', str(result.pk))
         save_path = save_path + '.' + img_field.name.split('.')[-1]
         result.img_file_path=save_path
         result.save()
 
+        # 새로 만든 이미지 이름으로 media 폴더에 이미지 저장
         save_path = os.path.join(settings.MEDIA_ROOT, str(result.pk))
         save_path = save_path + '.' + img_field.name.split('.')[-1]
-        print("새로만든 save_path : ", save_path)
-        print("img_filed.name : ", img_field.name)
         img_field.name = str(result.pk)
-        print("img_filed.name : ", img_field.name)
-
         image.save(save_path, format=None)
                 
         return redirect(f'/result/show_result/{result.pk}')
+
+def error_page(request):
+    return render(request, 'upload/error_page.html')
