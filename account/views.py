@@ -48,7 +48,6 @@ class AccountUpdateView(UpdateView):
     #     return reverse_lazy('account:detail', kwargs={'pk': self.object.pk})
 
 
-
 @method_decorator(has_ownership, 'get')
 @method_decorator(has_ownership, 'post')
 class AccountDeleteView(DeleteView):
@@ -56,14 +55,6 @@ class AccountDeleteView(DeleteView):
     context_object_name = 'target_user'
     success_url = reverse_lazy('account:login')
     template_name = 'account/delete.html'
-
-
-def send_email(request):
-    subject = "message"
-    to = ["aaa@bbb.com"]
-    from_email = "alphaca.igs@gmail.com"
-    message = "test"
-    EmailMessage(subject=subject, body=message, to=to, from_email=from_email).send()
 
 
 class AccountCreateView(CreateView):

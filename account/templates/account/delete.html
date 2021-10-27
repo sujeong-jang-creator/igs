@@ -12,14 +12,13 @@
         <hr style="border: solid 1px; width: 90%;">
     </div>
     <div>
-        <hr>
         탈퇴 후에는 되돌릴 수 없습니다.
         <br>
         정말로 탈퇴하시겠습니까?
     </div>
-    <form action="{% url 'account:delete' pk=target_user.pk %}" method="post">
+    <form action="{% url 'account:delete' pk=user.pk %}" method="post">
         {% csrf_token %}
-        <button type="submit" onclick="history.back()" method="post" class="btn btn-neg">취소</button>
+        <a href="{% url 'account:detail' pk=user.pk %}" class="btn btn-neg">취소</a>
         <input type="submit" value="탈퇴하기" class="btn btn-danger col-3">
     </form>
 </div>

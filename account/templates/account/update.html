@@ -15,7 +15,7 @@
     <form action="{% url 'account:update' pk=user.pk %}" method="post">
         {% csrf_token %}
         {% bootstrap_form form %}
-        <button type="cancel" onclick="history.back()" method="post" class="btn btn-neg">취소</button>
+        <a href="{% url 'account:detail' pk=user.pk %}" class="btn btn-neg">취소</a>
         <input method="post" type="submit" value="저장" class="btn btn-pos">
     </form>
 </div>
