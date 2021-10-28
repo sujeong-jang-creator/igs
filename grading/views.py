@@ -76,3 +76,8 @@ class PostListView2(ListView):
             context['next_page_no'] = end_page.next_page_number()
 
         return context
+
+def show_detail(request, result_pk):
+    data = Results.objects.get(pk=result_pk)
+
+    return render(request, 'grading/show_detail.html', {'result' : data})
