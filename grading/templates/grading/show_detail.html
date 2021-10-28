@@ -4,11 +4,8 @@
 {% block script %}
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
-<!-- <link rel='stylesheet' href="{% static 'result/css/result.css' %}"> -->
 <link rel='stylesheet' href="{% static 'grading/css/show_detail.css' %}">
 <link rel='stylesheet' href="{% static 'css/btns.css' %}">
-
-
 {% endblock script %}
 
 {% block content %}
@@ -28,7 +25,7 @@
 
   <div class="chart-box">
     {% if result.modified_grade == None %}
-    <canvas id="myChart" style="height: 80%; width: 70%;"></canvas>
+    <canvas id="myChart" style="height: 90%; width: 70%;"></canvas>
     {% endif %}
   </div> <!-- chart.js -->
 
@@ -38,26 +35,15 @@
     </div>
 
     <form method="post" style="text-align: center;">
-        {% csrf_token %}
+      {% csrf_token %}
 
-        <button type="button" class="btn-back btn-neg" onclick="history.back()">뒤로가기</button>
+      <button type="button" class="btn-back btn-neg" onclick="history.back()">뒤로가기</button>
     </form>
 
   </div>
 </div>
+
 <script>
-
-
-  //   $("#insert_btn").click(function(){
-  //       if(confirm("현재 화면을 벗어나면등급을 수정을 할 수 없습니다.나가시겠습니까? 등급 수정은 한 번만 할 수 있습니다.") == true){
-  //         // onclick= location.href="{%url 'home' %}"
-  //         return true;
-  //       }
-  //       else{
-  //         // self.close();
-  //         return false;
-  //       }
-  //   });
 
   var f_g = document.getElementById("f_g").value;
   var s_g = document.getElementById('s_g').value;
@@ -71,7 +57,7 @@
   var myChart = new Chart(ctx, {
     type: 'bar',
     data: {
-      labels: [f_g+' 등급', s_g+' 등급', t_g+' 등급'],
+      labels: [f_g + ' 등급', s_g + ' 등급', t_g + ' 등급'],
       datasets: [{
         label: '# of Percentage',
         data: [f_g_p, s_g_p, t_g_p],
@@ -110,7 +96,7 @@
               // Note: The y value is reverse, it counts from top down
               if ((scale_max - model.y) / scale_max >= 0.93)
                 y_pos = model.y + 20;
-              ctx.fillText(dataset.data[i]+'%', model.x, y_pos);
+              ctx.fillText(dataset.data[i] + '%', model.x, y_pos);
             }
           });
         }
