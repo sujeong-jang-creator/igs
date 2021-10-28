@@ -1,0 +1,42 @@
+.error-content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.title {
+    text-align: center;
+}
+
+.oops {
+    text-align: center;
+    font-size: xxx-large;
+    font-weight: bold;
+    color: #333;
+}
+
+/* style="display: flex; width: 100%; margin: 15px 0;" */
+.btn-box{
+    display: flex;
+    width: 80%;
+    margin: 15px 0 30px 0;
+    justify-content: space-evenly;
+}
+
+.btns {
+    width: fit-content;
+    border: none;
+    /* display: block; */
+    width: 45%;
+    height: 35px;
+    text-align: center;
+    color: #fff;
+    /* font-size: 18px; */
+    font-family: 'Open Sans', sans-serif;
+    /* text-transform: uppercase; */
+    /* font-weight: 600; */
+    border-radius: 10px;
+    cursor: pointer;
+}
