@@ -1,33 +1,18 @@
 {% extends 'base.html' %}
 {% load bootstrap4 %}
-
+{% load static %}
+{% block script %}
+<link rel='stylesheet' href="{% static 'account/css/bs_custom.css' %}">
+<link rel='stylesheet' href="{% static 'css/btns.css' %}">
+{% endblock script %}
 {% block content %}
-<div>
-    <a href="{% url 'upload:pick_photo' %}?next={{ request.path }}">
-        <span>사진 촬영</span>
-    </a>
-    {% if not user.is_authenticated %}
-    <a href="{% url 'account:login' %}?next={{ request.path }}">
-        <span>Login</span>
-    </a>
-    <a href="{% url 'account:create' %}?next={{ request.path }}">
-        <span>SignUp</span>
-    </a>
-    {% else %}
-    <a href="{% url 'account:detail' pk=user.pk %}">
-        <span>MyPage</span>
-    </a>
-    <a href="{% url 'account:logout' %}?next={{ request.path }}">
-        <span>Logout</span>
-    </a>
-    {% endif %}
-</div>
 
 <div>
-    <div class="igs_500px_div">
-        <h2>회원정보</h2>
-        <hr>
-        <br>
+    <div class="mst-div">
+        <div class="title">
+            회원정보
+            <hr style="border: solid 1px; width: 90%;">
+        </div>
         <h3 style="font-family: 'NanumSquareB'">
             {{ target_user.username }} 님
         </h3>
@@ -39,15 +24,11 @@
             가입일 : {{ target_user.date_joined|date:'Y년m월d일 h시i분' }}
         </p>
         {% if target_user == user %}
-        <a href="{% url 'account:update' pk=user.pk %}">
-            <p>
-                비밀번호 변경
-            </p>
+        <a href="{% url 'account:update' pk=user.pk %}" class="btn btn-pos">
+            비밀번호 변경
         </a>
-        <a href="{% url 'account:delete' pk=user.pk %}">
-            <p>
-                회원탈퇴
-            </p>
+        <a href="{% url 'account:delete' pk=user.pk %}" class="btn btn-neg">
+            회원탈퇴
         </a>
         {% endif %}
     </div>
