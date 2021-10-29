@@ -7,8 +7,6 @@ from account.views import AccountCreateView, AccountDetailView, AccountUpdateVie
 app_name = "account"
 
 urlpatterns = [
-    # path('hello_world/', hello_world, name='hello_world'),
-
     path('login/', LoginView.as_view(template_name='account/login.html'), name='login'),
     path('logout/', LogoutView.as_view(), name='logout'),
 
