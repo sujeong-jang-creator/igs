@@ -3,8 +3,8 @@ from django.contrib.auth.models import (BaseUserManager, AbstractBaseUser)
 from django.utils import timezone
 
 
-class HelloWorld(models.Model):
-    text = models.CharField(max_length=255, null=False)
+# class HelloWorld(models.Model):
+#     text = models.CharField(max_length=255, null=False)
 
 
 class UserManager(BaseUserManager):
