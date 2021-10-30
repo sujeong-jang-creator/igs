@@ -1,6 +1,6 @@
 /* menu */
 .main-header {
-    height: 9%;
+    height: 9vh;
     max-height: 70px;
     /* text-align: right; */
     background-color: rgb(241, 209, 177);
@@ -107,5 +107,5 @@
 }
 
 .content-body {
-    height: 91%;
+    height: 91vh;
 }
