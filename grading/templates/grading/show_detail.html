@@ -4,12 +4,12 @@
 {% block script %}
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
-<link rel='stylesheet' href="{% static 'result/css/result.css' %}">
+<link rel='stylesheet' href="{% static 'grading/css/show_detail.css' %}">
 <link rel='stylesheet' href="{% static 'css/btns.css' %}">
 {% endblock script %}
 
 {% block content %}
-<div class="result-content">
+<div class="detail-content">
   <div class="img-box">
     <img class="mx-auto d-block predict-img" src="{{ result.img_file_path }}">
   </div> <!-- 이미지-->
@@ -24,37 +24,26 @@
   </div>
 
   <div class="chart-box">
+    {% if result.modified_grade == None %}
     <canvas id="myChart" style="height: 90%; width: 70%;"></canvas>
+    {% endif %}
   </div> <!-- chart.js -->
 
-  <div style="height: 15%; display: flex; flex-direction: column; align-items: center;">
+  <div style="height: 15%;">
     <div class="text">
-      판별 결과 <span style="color:red;">{{result.first_grade}} 등급 </span> 입니다.
+      판별 결과 <span style="color:red;">{{result.first_grade}} 등급 </span>입니다.
     </div>
 
-    <form method="post" style="width: 80%; display: flex; justify-content: space-evenly; align-items: center;">
+    <form method="post" style="text-align: center;">
       {% csrf_token %}
 
-      <button type="submit" class="btn-neg btns" id="insert_btn">홈으로가기</button>
-      <button type="button" class="btn-pos btns"
-        onclick=location.href="{%url 'result:revision' result.pk %}">등급수정</button>
+      <button type="button" class="btn-back btn-neg" onclick="history.back()">뒤로가기</button>
     </form>
+
   </div>
 </div>
 
 <script>
-
-
-  $("#insert_btn").click(function () {
-    if (confirm("현재 화면을 벗어나면등급을 수정을 할 수 없습니다.나가시겠습니까? 등급 수정은 한 번만 할 수 있습니다.") == true) {
-      // onclick= location.href="{%url 'home' %}"
-      return true;
-    }
-    else {
-      // self.close();
-      return false;
-    }
-  });
 
   var f_g = document.getElementById("f_g").value;
   var s_g = document.getElementById('s_g').value;
@@ -139,4 +128,4 @@
     }
   });
 </script>
-{% endblock content %}
+{% endblock content %} -->
