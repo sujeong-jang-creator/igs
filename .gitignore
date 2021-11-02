@@ -85,9 +85,10 @@ igs.ini
 igs.uwsgi.log
 igs.uwsgi.pid
 
-# migrations, media
+# migrations, media, dataset
 **/migrations/
 media/
+dataset/
 
 # large file
 model/YOLOv4/
