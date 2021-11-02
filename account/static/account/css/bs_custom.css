@@ -1,5 +1,6 @@
 .mst-div {
     text-align: center;
+    height: 100%;
 }
 .btn {
     margin:15px;
@@ -9,13 +10,17 @@
     padding-left: 20%;
     padding-right: 20%;
 }
+
 .title {
     text-align: center;
     padding-top: 3vh;
     font-size: 24px;
+    width: 90%;
+    border-bottom: solid 2px black;
+    margin: 0 auto;
+    padding-bottom: 1vh;
 }
-hr {
-    margin: auto;
-    margin-top: 1vh;
-    margin-bottom: 1.5vh
+
+.content-box {
+    padding-top: 5vh;
 }

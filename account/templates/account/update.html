@@ -10,7 +10,6 @@
 <div class="mst-div">
     <div class="title">
         회원정보 수정
-        <hr style="border: solid 1px; width: 90%;">
     </div>
     <form action="{% url 'account:update' pk=user.pk %}" method="post">
         {% csrf_token %}
