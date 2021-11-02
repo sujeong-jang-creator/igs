@@ -5,7 +5,7 @@ import json
 import numpy as np
 from PIL import Image
 from django.http import HttpResponse
-from numpy.lib.npyio import save
+# from numpy.lib.npyio import save
 from igs import settings
 from . import forms
 from .apps import UploadConfig
@@ -34,8 +34,6 @@ def predict(request):
         if len(pred[0]) == 0: # 사진의 화질이 좋지 않아서 검출이 되지 않는 경우
             return redirect('/upload/error_page')
 
-        print("pred : " , pred)
-        print("--------------------")
         # 후처리
         pred_boxes = pred[:,:, :4] # 예측한 bbox 좌표
         pred_conf = pred[:, :, 4:] # 예측한 class 별 확률
@@ -55,20 +53,29 @@ def predict(request):
                 score_threshold = CONFIDENCE_SORE_THRESH, 
         )
 
+        print("boxes : ", boxes)
+        print("boxlen : ", len(boxes[0]))
+
         # Result 모델에 들어갈 내용 찾기
         min_y = boxes[0][0][0]
         min_x = boxes[0][0][1]
         max_y = boxes[0][0][2]
         max_x = boxes[0][0][3]
 
-        
+        # box의 위치 찾기를 실패하는 경우 에러 페이지 연결
+        flag = True
 
         for i in range(len(pred[0])):
             print(pred[0][i][0], pred[0][i][1], pred[0][i][2], pred[0][i][3])
             if pred[0][i][0] == min_y and pred[0][i][1] == min_x and pred[0][i][2] == max_y and pred[0][i][3]==max_x:
                 class_prob = [pred[0][i][4], pred[0][i][5], pred[0][i][6], pred[0][i][7], pred[0][i][8]]
-                break      
+                flag = False
+                break    
         
+        if flag:
+            return redirect('/upload/error_page')     
+        
+
         sorted_index = np.argsort(class_prob)
         class_str = ["1++", "1+", "1", "2", "3"]
         # print("settings.MEDIA_ROOT : ", settings.MEDIA_ROOT)
@@ -83,19 +90,52 @@ def predict(request):
         second_grade_percentage = int(np.round(100*class_prob[sorted_index[3]])), third_grade = class_str[sorted_index[2]], 
         third_grade_percentage = int(np.round(100*class_prob[sorted_index[2]])), user_id= user)
         result.save()
-
+       
         # Result 이미지 경로 수정 
+
+        print(result.pk)
         save_path = os.path.join('/media/', str(result.pk))
         save_path = save_path + '.' + img_field.name.split('.')[-1]
         result.img_file_path=save_path
         result.save()
 
         # 새로 만든 이미지 이름으로 media 폴더에 이미지 저장
+
+        if not os.path.isdir(settings.MEDIA_ROOT):
+            os.makedirs(settings.MEDIA_ROOT)
+
         save_path = os.path.join(settings.MEDIA_ROOT, str(result.pk))
         save_path = save_path + '.' + img_field.name.split('.')[-1]
-        img_field.name = str(result.pk)
         image.save(save_path, format=None)
-                
+
+
+        # 재학습을 위한 image, text 정보 저장
+
+        center_x = (min_x + max_x)/2
+        center_y = (min_y + max_y)/2
+
+        object_width = (max_x - min_x)
+        object_height = (max_y - min_y)
+
+        label = sorted_index[4]
+
+        DATASET_SAVE_PATH = 'dataset'
+        if not os.path.isdir(DATASET_SAVE_PATH):
+            os.makedirs(DATASET_SAVE_PATH)
+
+        text_name = str(result.pk) + ".txt"
+        image_name = str(result.pk) + '.' + img_field.name.split('.')[-1]
+        img_field.name = image_name
+
+        TEXT_SAVE_PATH = os.path.join(DATASET_SAVE_PATH, text_name)
+        IMG_SAVE_PATH = os.path.join(DATASET_SAVE_PATH, image_name)
+
+        with open(TEXT_SAVE_PATH, 'wt') as fw:
+            save_str = f"{label} {center_x} {center_y} {object_width} {object_height}" 
+            fw.writelines(save_str)
+            
+        image.save(IMG_SAVE_PATH, format=None)
+        
         return redirect(f'/result/show_result/{result.pk}')
 
 def error_page(request):
