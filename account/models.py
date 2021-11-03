@@ -2,11 +2,6 @@ from django.db import models
 from django.contrib.auth.models import (BaseUserManager, AbstractBaseUser)
 from django.utils import timezone
 
-
-# class HelloWorld(models.Model):
-#     text = models.CharField(max_length=255, null=False)
-
-
 class UserManager(BaseUserManager):
     def create_user(self, email, username, password=None):
         if not email:
