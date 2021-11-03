@@ -27,24 +27,30 @@
     <input id="t_g_p" type="hidden" value={{result.third_grade_percentage}}>
   </div>
 
+  {% if result.modified_grade == None %}
   <div class="chart-box">
-    {% if result.modified_grade == None %}
     <canvas id="myChart" style="height: 85%; width: 70%;"></canvas>
-    {% endif %}
   </div> <!-- chart.js -->
+  {% endif %}
 
-  <div style="height: 15%;">
-    <div class="text">
-      판별 결과 <span style="color:red;">{{result.first_grade}} 등급 </span>입니다.
+  {% if result.modified_grade != None %}
+  <div style="margin: 5vh 0;">
+  {% endif %}
+    <div style="height: 15%;">
+      <div class="text">
+        판별 결과 <span style="color:red;">{{result.first_grade}} 등급 </span>입니다.
+      </div>
+
+      <form method="post" style="text-align: center;">
+        {% csrf_token %}
+
+        <button type="button" class="btn-back btn-neg" onclick="history.back()">뒤로가기</button>
+      </form>
     </div>
-
-    <form method="post" style="text-align: center;">
-      {% csrf_token %}
-
-      <button type="button" class="btn-back btn-neg" onclick="history.back()">뒤로가기</button>
-    </form>
-
+  {% if result.modified_grade != None %}
   </div>
+  {% endif %}
+
 </div>
 
 <script>
