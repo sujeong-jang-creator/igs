@@ -76,3 +76,11 @@
     border-radius: 10px;
     cursor: pointer;
 }
+
+#error-msg {
+    text-align: center;
+}
+
+#error-msg p {
+    margin: 0;
+}

@@ -5,12 +5,9 @@
 <link rel="stylesheet" href="{% static 'upload/css/img_preview.css'%}">
 <link rel="stylesheet" href="{% static 'css/btns.css'%}">
 <script src="{% static 'upload/js/img_preview.js' %}"></script>
-
 {% endblock script %}
 
-
 {% block content %}
-
 <div class="title">
     등급 판정
 </div>
@@ -27,9 +24,10 @@
         <div class="predict-box">
             <button type='submit' onClick="return member_submit();" class="predict-btn btn-neg">판별하기</button>
         </div>
-        <!-- <div id="error-msg" style="visibility: hidden;">
-            사진을 선택해주세요
-        </div> -->
+        <div id="error-msg" style="visibility: hidden;">
+            <p>등급을 판정하고 있습니다.</p>
+            <p>잠시만 기다려주세요.</p>
+        </div>
     </form>
 </div>
 
@@ -37,11 +35,10 @@
     function member_submit() {
         if (document.getElementById('file-ip-1-preview').style.display != 'block') {
             alert('사진을 선택해주세요!');
-            // document.getElementById('error-msg').style.visibility = "visible";
-            // document.getElementById('error-msg').className = "alert alert-danger";
-            return false;
+                        return false;
         } else if (document.getElementById('file-ip-1-preview').style.display == 'block') {
-            document.getElementById('error-msg').style.visibility = 'hidden';
+            document.getElementById('error-msg').style.visibility = "visible";
+            document.getElementById('error-msg').className = "alert alert-warning";
         }
     }
 </script>
