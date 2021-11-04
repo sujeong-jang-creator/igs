@@ -36,7 +36,7 @@
     <thead class="thead-dark">
       <tr>
         <th scope="col">No</th>
-        <th scope="col">일시</th>
+        <th scope="col">날짜</th>
         <th scope="col">등급</th>
         <th scope="col">닉네임</th>
       </tr>
@@ -46,7 +46,11 @@
       <tr onClick=location.href="{%url 'grading:show_detail' a.pk %}" style="cursor:pointer;">
         <td>{{page_obj.number|sub:1|multi:7|add:forloop.counter}}</td>
         <td>{{a.register_date}}</td>
+        {% if a.modified_grade != None %}
+        <td>{{a.modified_grade}}</td>
+        {% else %}
         <td>{{a.first_grade}}</td>
+        {% endif %}
         <td>{{user.username}}</td>
       </tr>
       {% endfor %}
