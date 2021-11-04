@@ -3,47 +3,53 @@
 
 {% block script %}
 <link rel='stylesheet' href="{% static 'result/css/revision.css' %}">
+<link rel='stylesheet' href="{% static 'css/btns.css' %}">
 <script>
-  $(document).ready(function(){
+  $(document).ready(function () {
 
-    $("#insert_btn").click(function(){
-        var grade = document.getElementById('grade').value
-        // console.log(grade)
-        if(confirm("판정 등급을 {{result.first_grade}}에서 " + grade + " 등급으로 변경하시겠습니까?") == true){
-            
-        }
-        else{
-            return false;
-        }
-   });
-});
+    $("#insert_btn").click(function () {
+      var grade = document.getElementById('grade').value
+      // console.log(grade)
+      if (confirm("판정 등급을 {{result.first_grade}}에서 " + grade + " 등급으로 변경하시겠습니까?") == true) {
+
+      }
+      else {
+        return false;
+      }
+    });
+  });
 </script>
 
 {% endblock script %}
 
 {% block content %}
-<div>
-    <img class="mx-auto d-block" src="{{ result.img_file_path }}" height=50%, width=50%>  
+<div class="title">
+  판정 결과 수정
 </div>
 
-<form action="{%url 'result:revision' result.pk %}" method="post">
-  {% csrf_token %}
-<div class="table" style="width:40%;">          
-    <table class="table table-bordered" valign="center">
-      <thead class="thead-light">
-        <tr>
-          <th class="text-center" style="width:50%;"> <span>판정 등급</span></th>
-          <th class="text-center" style="width:50%;"> <span>실제 등급</span></th>
-        </tr>
-      </thead>
+<div class="revision-content">
+  <div class="img-box">
+    <img class="mx-auto d-block predict-img" src="{{ result.img_file_path }}">
+  </div>
 
-      <tbody>
-        <tr>
-          <td class="text-center">
+  <form action="{%url 'result:revision' result.pk %}" method="post" class="revision-form">
+    {% csrf_token %}
+    <div class="table-content">
+      <table class="table table-bordered" valign="center">
+        <thead class="thead-light">
+          <tr>
+            <th class="text-center" style="width:50%;"> <span>판정 등급</span></th>
+            <th class="text-center" style="width:50%;"> <span>실제 등급</span></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td class="text-center">
               <span>{{result.first_grade}}</span>
-          </td>
-          <td>
-            <div class="dropbox" style="text-align: center;">
+            </td>
+            <td>
+              <div class="dropbox" style="text-align: center;">
 
                 <select id="grade" name="grade">
                   <option value="0">--선택--</option>
@@ -53,20 +59,21 @@
                   <option value="2">2</option>
                   <option value="3">3</option>
                 </select>
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-</div> <!-- 테이블-->
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div> <!-- 테이블-->
 
 
-<div class = "modal-footer d-flex justify-content-center">
-    <input type="hidden" name = "result_id" value = {{result.pk}}>
-    <button type="button" class = "button" onclick= location.href="{%url 'home' %}">홈으로가기</button>
-    <button type="submit" class = "button" id="insert_btn">등급수정</button>
+    <div class="btn-box">
+      <input type="hidden" name="result_id" value={{result.pk}}>
+      <button type="button" class="btn-neg btns" onclick=location.href="{%url 'home' %}">홈으로가기</button>
+      <button type="submit" class="btn-pos btns" id="insert_btn">등급수정</button>
+    </div>
+
 </div>
-
-  </div>
-</form>   
+</form>
+</div>
 {% endblock content %}

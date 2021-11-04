@@ -10,16 +10,18 @@
 <div class="mst-div">
     <div class="title">
         회원가입
-        <hr style="border: solid 1px; width: 90%;">
     </div>
-    <form action="{% url 'account:create' %}" method="post">
 
-        {% csrf_token %}
-        {% bootstrap_form form %}
-
-        <button type="submit" onclick="history.back()" method="post" class="btn btn-neg">취소</button>
-        <input type="submit" value="회원가입" class="btn btn-pos">
-    </form>
+    <div class="content-box">
+        <form action="{% url 'account:create' %}" method="post">
+            
+            {% csrf_token %}
+            {% bootstrap_form form %}
+            
+            <button type="submit" onclick="history.back()" method="post" class="btn btn-neg">취소</button>
+            <input type="submit" value="회원가입" class="btn btn-pos">
+        </form>
+    </div>
 </div>
 
 {% endblock %}

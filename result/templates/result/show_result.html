@@ -5,57 +5,59 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
 <link rel='stylesheet' href="{% static 'result/css/result.css' %}">
-
-
+<link rel='stylesheet' href="{% static 'css/btns.css' %}">
 {% endblock script %}
 
 {% block content %}
-<div>
-  <img class="mx-auto d-block" src= "{{ result.img_file_path }}" height=50%, width=50%>     
-</div> <!-- 이미지-->
-
-<div>
-
-  <input id="f_g" type ="hidden" value={{result.first_grade}}>
-  <input id="s_g" type ="hidden" value={{result.second_grade}}>
-  <input id="t_g" type ="hidden" value={{result.third_grade}}>
-  <input id="f_g_p" type ="hidden" value={{result.first_grade_percentage}}>
-  <input id="s_g_p" type ="hidden" value={{result.second_grade_percentage}}>
-  <input id="t_g_p" type ="hidden" value={{result.third_grade_percentage}}>
+<div class="title">
+  판정 결과
 </div>
 
+<div class="result-content">
+  <div class="img-box">
+    <img class="mx-auto d-block predict-img" src="{{ result.img_file_path }}">
+  </div> <!-- 이미지-->
 
-<div style="width:50%; margin:0 auto;">
-  <canvas id="myChart"></canvas>
-</div> <!-- chart.js -->
+  <div>
+    <input id="f_g" type="hidden" value={{result.first_grade}}>
+    <input id="s_g" type="hidden" value={{result.second_grade}}>
+    <input id="t_g" type="hidden" value={{result.third_grade}}>
+    <input id="f_g_p" type="hidden" value={{result.first_grade_percentage}}>
+    <input id="s_g_p" type="hidden" value={{result.second_grade_percentage}}>
+    <input id="t_g_p" type="hidden" value={{result.third_grade_percentage}}>
+  </div>
 
-<div class = "text">
-  판별 결과 <span style="color:red;">{{result.first_grade}}</span> 입니다.
+  <div class="chart-box">
+    <canvas id="myChart" style="height: 85%; width: 70%;"></canvas>
+  </div> <!-- chart.js -->
+
+  <div style="height: 15%; display: flex; flex-direction: column; align-items: center;">
+    <div class="text">
+      판별 결과 <span style="color:red;">{{result.first_grade}} 등급 </span> 입니다.
+    </div>
+
+    <form method="post" style="width: 80%; display: flex; justify-content: space-evenly; align-items: center;">
+      {% csrf_token %}
+
+      <button type="submit" class="btn-neg btns" id="insert_btn">홈으로가기</button>
+      <button type="button" class="btn-pos btns"
+        onclick=location.href="{%url 'result:revision' result.pk %}">등급수정</button>
+    </form>
+  </div>
 </div>
 
-<form method="post">
-<div class="d-flex justify-content-center">
-
-    {% csrf_token %}
-   
-    <button type="submit" class = "button" id = "insert_btn" >홈으로가기</button>
-    <button type="button" class = "button"  onclick= location.href="{%url 'result:revision' result.pk %}">등급수정</button>
-  
-</div>
-</form>
-
-<script> 
+<script>
 
 
-  $("#insert_btn").click(function(){
-      if(confirm("현재 화면을 벗어나면등급을 수정을 할 수 없습니다.나가시겠습니까? 등급 수정은 한 번만 할 수 있습니다.") == true){
-        // onclick= location.href="{%url 'home' %}"
-        return true;
-      }
-      else{
-        // self.close();
-        return false;
-      }
+  $("#insert_btn").click(function () {
+    if (confirm("현재 화면을 벗어나면등급을 수정을 할 수 없습니다.나가시겠습니까? 등급 수정은 한 번만 할 수 있습니다.") == true) {
+      // onclick= location.href="{%url 'home' %}"
+      return true;
+    }
+    else {
+      // self.close();
+      return false;
+    }
   });
 
   var f_g = document.getElementById("f_g").value;
@@ -66,47 +68,79 @@
   var s_g_p = document.getElementById('s_g_p').value;
   var t_g_p = document.getElementById('t_g_p').value;
 
-  var ctx = document.getElementById('myChart'); 
-  var myChart = new Chart(ctx, { 
-    type: 'bar', 
-    data: { labels: [f_g, s_g, t_g], 
-    datasets: [{ 
-      label: '# of Percentage', 
-      data: [f_g_p, s_g_p, t_g_p], 
-      backgroundColor: [ 
-        'rgba(255, 206, 86, 0.2)', 
-        'rgba(255, 159, 64, 0.2)',
-        'rgba(255, 99, 132, 0.2)', 
-      ], 
-      borderColor: [ 
-        'rgba(255, 206, 86, 1)', 
-        'rgba(255, 159, 64, 1)', 
-        'rgba(255, 99, 132, 1)', 
-      ], 
-      borderWidth: 1 
-    }] 
-  }, 
-  options: { 
-    responsive : true,
-    scales: { 
-      xAxes: [{ 
-        gridLines: { //x축 gridLines 지우는 옵션 
-          display: false, 
-          drawBorder: false, 
-        },
-      }],
+  var ctx = document.getElementById('myChart');
+  var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: [f_g + ' 등급', s_g + ' 등급', t_g + ' 등급'],
+      datasets: [{
+        label: '# of Percentage',
+        data: [f_g_p, s_g_p, t_g_p],
+        backgroundColor: [
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(255, 159, 64, 0.2)',
+          'rgba(255, 99, 132, 0.2)',
+        ],
+        borderColor: [
+          'rgba(255, 206, 86, 1)',
+          'rgba(255, 159, 64, 1)',
+          'rgba(255, 99, 132, 1)',
+        ],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      // 퍼센트 보이도록 설정
+      animation: {
+        duration: 500,
+        easing: "easeOutQuart",
+        onComplete: function () {
+          var ctx = this.chart.ctx;
+          ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontFamily, 'normal', Chart.defaults.global.defaultFontFamily);
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'bottom';
 
-      yAxes: [{ 
-        gridLines: { //y축 선 지우기
-          drawBorder:false,
-          display: false
-        },
-        ticks: { 
-          beginAtZero: true 
-        } 
-      }] 
-    } 
-  } 
-}); 
+          this.data.datasets.forEach(function (dataset) {
+            for (var i = 0; i < dataset.data.length; i++) {
+              var model = dataset._meta[Object.keys(dataset._meta)[0]].data[i]._model,
+                scale_max = dataset._meta[Object.keys(dataset._meta)[0]].data[i]._yScale.maxHeight;
+              ctx.fillStyle = '#444';
+              var y_pos = model.y + 5;
+              // Make sure data value does not get overflown and hidden
+              // when the bar's value is too close to max value of scale
+              // Note: The y value is reverse, it counts from top down
+              if ((scale_max - model.y) / scale_max >= 0.93)
+                y_pos = model.y + 20;
+              ctx.fillText(dataset.data[i] + '%', model.x, y_pos);
+            }
+          });
+        }
+      },
+      // css 설정을 위한 설정
+      responsive: false,
+      // legend를 지우는 설정
+      legend: {
+        display: false,
+      },
+      scales: {
+        xAxes: [{
+          gridLines: { //x축 gridLines 지우는 옵션 
+            display: false,
+            drawBorder: false,
+          },
+        }],
+
+        yAxes: [{
+          gridLines: { //y축 선 지우기
+            drawBorder: false,
+            display: false
+          },
+          ticks: {
+            beginAtZero: true
+          }
+        }]
+      }
+    }
+  });
 </script>
 {% endblock content %}

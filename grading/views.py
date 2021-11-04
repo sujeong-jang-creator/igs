@@ -13,6 +13,9 @@ class PostListView(ListView):
     model = Results
     paginate_by = 7
 
+    def get_queryset(self):
+        return Results.objects.filter(user_id=get_user(self.request).pk)
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         paginator = context['paginator']
