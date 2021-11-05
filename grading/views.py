@@ -11,7 +11,7 @@ from django.contrib.auth import get_user
 class PostListView(ListView):
     template_name = "grading/total_distinguish.html"
     model = Results
-    paginate_by = 7
+    paginate_by = 10
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -43,7 +43,7 @@ class PostListView(ListView):
 
 class PostListView2(ListView):
     template_name = "grading/detail_distinguish.html"
-    paginate_by = 7
+    paginate_by = 10
 
     def get_queryset(self):
         return Results.objects.filter(user_id=get_user(self.request).pk).order_by('-register_date')
