@@ -25,11 +25,6 @@
     padding-bottom: 1vh;
 }
 
-hr {
-    margin: auto;
-    margin-top: 1vh;
-}
-
 .buttons {
     padding: 1.5vh 5vw;
     /* margin-top: 1.5vh; */
@@ -46,7 +41,7 @@ hr {
 }
 
 .table {
-    width: 80%;
+    width: 85%;
     /* margin: auto;
     margin-top: 3vh; */
     text-align: center;

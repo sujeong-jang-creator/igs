@@ -22,13 +22,7 @@
     width: 90%;
     border-bottom: solid 2px black;
     margin: 0 auto;
-    padding-bottom: 1vh
-    ;
-}
-
-hr {
-    margin: auto;
-    margin-top: 1vh;
+    padding-bottom: 1vh;
 }
 
 .buttons {
@@ -47,7 +41,7 @@ hr {
 }
 
 .table {
-    width: 80%;
+    width: 85%;
     /* margin: auto;
     margin-top: 3vh; */
     text-align: center;

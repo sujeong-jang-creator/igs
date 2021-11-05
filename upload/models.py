@@ -18,3 +18,6 @@ class Results(models.Model):
     
     def __str__(self):
         return str(self.pk)
+
+    class Meta:
+        ordering = ['-register_date']

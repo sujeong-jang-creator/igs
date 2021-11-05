@@ -31,22 +31,27 @@
   </div>
 </div>
 
-{{number}}
 <div id="table-box">
-  <table class="table table-striped">
+  <table class="table table-striped table-sm">
     <thead class="thead-dark">
       <tr>
         <th scope="col">No</th>
         <th scope="col">날짜</th>
         <th scope="col">등급</th>
+        <th scope="col">닉네임</th>
       </tr>
     </thead>
     <tbody>
       {% for a in object_list %}
       <tr onClick=location.href="{%url 'grading:show_detail' a.pk %}" style="cursor:pointer;">
-        <td>{{page_obj.number|sub:1|multi:7|add:forloop.counter}}</td>
+        <td>{{page_obj.number|sub:1|multi:10|add:forloop.counter}}</td>
         <td>{{a.register_date}}</td>
+        {% if a.modified_grade != None %}
+        <td>{{a.modified_grade}}</td>
+        {% else %}
         <td>{{a.first_grade}}</td>
+        {% endif %}
+        <td>{{a.user_id.username}}</td>
       </tr>
       {% endfor %}
     </tbody>

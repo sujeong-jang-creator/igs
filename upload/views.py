@@ -94,7 +94,7 @@ def predict(request):
         result = Results(img_file_path = '/media/',  first_grade=class_str[sorted_index[4]], 
         first_grade_percentage = int(np.round(100*class_prob[sorted_index[4]])), second_grade = class_str[sorted_index[3]], 
         second_grade_percentage = int(np.round(100*class_prob[sorted_index[3]])), third_grade = class_str[sorted_index[2]], 
-        third_grade_percentage = int(np.round(100*class_prob[sorted_index[2]])), user_id= user)
+        third_grade_percentage = int(np.round(100*class_prob[sorted_index[2]])), user_id = user)
         result.save()
        
         # Result 이미지 경로 수정 
