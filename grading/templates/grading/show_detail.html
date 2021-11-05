@@ -37,9 +37,16 @@
   <div style="margin: 5vh 0;">
   {% endif %}
     <div style="height: 15%;">
+      {% if result.modified_grade != None %}
       <div class="text">
         판별 결과 <span style="color:red;">{{result.modified_grade}} 등급 </span>입니다.
       </div>
+      {% else %}
+      <div class="text">
+        판별 결과 <span style="color:red;">{{result.first_grade}} 등급 </span>입니다.
+      </div>
+      {% endif %}
+      
 
       <form method="post" style="text-align: center;">
         {% csrf_token %}

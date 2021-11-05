@@ -1,3 +1,4 @@
+import re
 from django.shortcuts import redirect, render
 
 import os
@@ -75,13 +76,18 @@ def predict(request):
         if flag:
             return redirect('/upload/error_page')     
         
-
         sorted_index = np.argsort(class_prob)
         class_str = ["1++", "1+", "1", "2", "3"]
         # print("settings.MEDIA_ROOT : ", settings.MEDIA_ROOT)
         # print("MEDIA_URL : ", settings.MEDIA_URL)
         
-        user = User(pk=request.user.pk)
+
+        # print("로그인 확인 ")
+        # print(request.user.is_authenticated)
+        if request.user.is_authenticated:
+            user = User(pk=request.user.pk)
+        else:
+            user = User(pk=7) # 비회원 정보
         # print(user)
     
         # Result에 모델 저장
