@@ -5,7 +5,6 @@ from django.core.serializers.json import DjangoJSONEncoder
 import os
 
 def show_result(request, result_pk):
-    print("넘어온 pk : ", result_pk)
     data = Results.objects.get(pk=result_pk)
     if request.method == "GET":
         return render(request, 'result/show_result.html', {'result' : data})
@@ -33,11 +32,9 @@ def revision(request, result_pk):
 
             with open(TEXT_SAVE_PATH,"rt") as f:
                 lines = f.readlines()
-                print(type(lines))
-                print(lines[0])
                 origin_split_lines = lines[0].split(" ")
                 split_lines = lines[0].split(" ")
-                print(split_lines)
+
                 if choice_grade == "1++":
                     new_label = 0
                 elif choice_grade == "1+":
@@ -50,10 +47,9 @@ def revision(request, result_pk):
                     new_label = 4
 
                 split_lines[0] = str(new_label)
-                print(split_lines)
                 
                 new_lines = ' '.join(split_lines)
-                print(new_lines)
+                
                 with open(TEXT_SAVE_PATH,"wt") as wf:
                     wf.writelines(new_lines)
 
