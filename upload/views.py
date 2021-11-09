@@ -1,12 +1,10 @@
 import re
 from django.shortcuts import redirect, render
-
 import os
 import json
 import numpy as np
 from PIL import Image
 from django.http import HttpResponse
-# from numpy.lib.npyio import save
 from igs import settings
 from . import forms
 from .apps import UploadConfig
@@ -20,8 +18,6 @@ def predict(request):
     if form.is_valid(): 
         clean_data = form.cleaned_data 
         img_field  = clean_data['upimg']
-        # print(img_field, type(img_field))
-        # print(img_field.image.width, img_field.image.height, img_field.image.format, img_field.name) 
         
         image = Image.open(img_field) 
         image_resize = image.resize((512,512)) 
@@ -54,9 +50,6 @@ def predict(request):
                 score_threshold = CONFIDENCE_SORE_THRESH, 
         )
 
-        print("boxes : ", boxes)
-        print("boxlen : ", len(boxes[0]))
-
         # Result 모델에 들어갈 내용 찾기
         min_y = boxes[0][0][0]
         min_x = boxes[0][0][1]
@@ -78,17 +71,11 @@ def predict(request):
         
         sorted_index = np.argsort(class_prob)
         class_str = ["1++", "1+", "1", "2", "3"]
-        # print("settings.MEDIA_ROOT : ", settings.MEDIA_ROOT)
-        # print("MEDIA_URL : ", settings.MEDIA_URL)
-        
-
-        # print("로그인 확인 ")
-        # print(request.user.is_authenticated)
+       
         if request.user.is_authenticated:
             user = User(pk=request.user.pk)
         else:
             user = User(pk=7) # 비회원 정보
-        # print(user)
     
         # Result에 모델 저장
         result = Results(img_file_path = '/media/',  first_grade=class_str[sorted_index[4]], 
