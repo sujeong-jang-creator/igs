@@ -38,6 +38,7 @@ def predict(request):
         tf.reshape(pred_boxes, (tf.shape(pred_boxes)[0], -1, 1, 4)).shape
         tf.reshape(pred_conf, (tf.shape(pred_conf)[0], -1, tf.shape(pred_conf)[-1])).shape
 
+        # 추후 모델 개선 후 수정
         IOU_THRESH = 0.2
         CONFIDENCE_SORE_THRESH = 0.2
 
@@ -72,6 +73,9 @@ def predict(request):
         sorted_index = np.argsort(class_prob)
         class_str = ["1++", "1+", "1", "2", "3"]
        
+       # 만약 로그인이 되어 있다면 현재 로그인 된 사용자의 pk로 설정
+       # 그렇지 않다면 비회원으로 등록
+
         if request.user.is_authenticated:
             user = User(pk=request.user.pk)
         else:
@@ -85,8 +89,6 @@ def predict(request):
         result.save()
        
         # Result 이미지 경로 수정 
-
-        print(result.pk)
         save_path = os.path.join('/media/', str(result.pk))
         save_path = save_path + '.' + img_field.name.split('.')[-1]
         result.img_file_path=save_path
